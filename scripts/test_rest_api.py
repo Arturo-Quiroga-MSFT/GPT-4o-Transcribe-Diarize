@@ -147,7 +147,7 @@ def transcribe_audio_rest(
         Transcription result dictionary
     """
     endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-04-01-preview")
     
     if not endpoint:
         raise ValueError("AZURE_OPENAI_ENDPOINT environment variable is required")
@@ -155,8 +155,9 @@ def transcribe_audio_rest(
     if not Path(audio_file_path).exists():
         raise FileNotFoundError(f"Audio file not found: {audio_file_path}")
     
-    # Construct URL
-    url = f"{endpoint}openai/v1/audio/transcriptions?api-version={api_version}"
+    # Construct URL using Azure OpenAI deployment-based endpoint pattern
+    # For Azure OpenAI endpoints (.openai.azure.com), use: /openai/deployments/{deployment-id}/audio/transcriptions
+    url = f"{endpoint}openai/deployments/{model}/audio/transcriptions?api-version={api_version}"
     
     print(f"\n{'='*60}")
     print(f"REST API Transcription")

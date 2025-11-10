@@ -36,23 +36,21 @@ The model automatically identifies different speakers and attributes text to eac
 - **Timestamp granularities**: Word-level and segment-level timing
 
 ### Chunking Strategy (REQUIRED)
-**Server-side Voice Activity Detection (VAD) for optimal audio segmentation:**
+**Simple string format for server-managed VAD:**
 
 ⚠️ **CRITICAL**: The `chunking_strategy` parameter is **REQUIRED** for `gpt-4o-transcribe-diarize`. Requests without it will fail with a 400 error.
 
-Parameters:
-- `type`: Must be `"server_vad"`
-- `prefix_padding_ms`: Audio before speech (default: 300ms)
-- `silence_duration_ms`: Silence threshold to detect speech end (default: 200ms)
-- `threshold`: Sensitivity (0.0-1.0, default: 0.5) - higher for noisy environments
+**Current Implementation:**
+```python
+chunking_strategy="auto"  # Only accepted value
+```
 
-**Example structure:**
-```json
-{
-  "type": "server_vad",
-  "threshold": 0.5,
-  "prefix_padding_ms": 300,
-  "silence_duration_ms": 200
+> **Note**: While API documentation describes detailed VAD configuration options, the model currently only accepts the string `"auto"`. The server automatically manages Voice Activity Detection with optimized parameters.
+
+**Example in REST API:**
+```python
+data = {
+    'chunking_strategy': (None, 'auto')
 }
 ```
 
@@ -102,9 +100,10 @@ cp config/.env.example .env
 ```
 
 Required environment variables:
-- `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint (e.g., https://your-resource.openai.azure.com)
+- `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint (e.g., https://your-resource.openai.azure.com/)
 - `AZURE_OPENAI_API_KEY`: Your API key (or use Entra ID authentication)
-- `AZURE_OPENAI_API_VERSION`: API version (default: 2025-03-01-preview)
+- `AZURE_OPENAI_API_VERSION`: API version (default: 2025-04-01-preview)
+- `MODEL_DEPLOYMENT_NAME`: Deployment name (default: gpt-4o-transcribe-diarize)
 
 ## Test Scripts
 
@@ -251,7 +250,9 @@ language="en"  # English
 ```
 
 ### 4. Prompt Engineering
-Provide context for better transcription:
+> **Important**: The `prompt` parameter is **NOT supported** by `gpt-4o-transcribe-diarize`. The diarization model automatically ignores prompts. Do not include prompt parameters in your requests to this model.
+
+For non-diarization models, provide context for better transcription:
 ```python
 prompt="Legal deposition with attorney and witness. Expect legal terminology, medical terms, and technical language."
 ```
@@ -261,15 +262,12 @@ prompt="Legal deposition with attorney and witness. Expect legal terminology, me
 - Increase slightly (0.1-0.2) if model seems too conservative
 
 ### 6. Chunking Strategy
-For noisy courtroom environments:
+**REQUIRED parameter** - Use simple string format:
 ```python
-chunking_strategy={
-    "type": "server_vad",
-    "threshold": 0.6,  # Higher threshold for noisy environments
-    "silence_duration_ms": 300,  # Longer pause detection
-    "prefix_padding_ms": 400  # More context before speech
-}
+chunking_strategy="auto"  # Server-managed VAD (recommended)
 ```
+
+> **Note**: While the API documentation describes detailed VAD parameters (`threshold`, `silence_duration_ms`, `prefix_padding_ms`), the current implementation only accepts the string value `"auto"`. Custom VAD parameters are managed server-side and cannot be configured directly in the request.
 
 ### 7. Timestamp Granularities
 ### 7. Timestamp Granularities
@@ -294,13 +292,37 @@ response_format={"type": "json"}
 - OGG
 
 ## Limitations
-- Maximum file size: Check Azure OpenAI limits
+- **Maximum audio duration: 1500 seconds (25 minutes)** per transcription request
+- Maximum file size: 25 MB
 - Real-time processing depends on audio length
 - Diarization accuracy varies with audio quality and speaker overlap
+- For longer audio files, implement chunking to process in 25-minute segments
 
-## API Versions
-- Current: `2025-03-01-preview` (recommended)
-- Previous: `2024-11-01-preview`
+## API Versions and Endpoints
+
+### Azure OpenAI Deployment-Based Endpoint
+For models deployed to Azure OpenAI resources (endpoints like `*.openai.azure.com`):
+
+- **API Version**: `2025-04-01-preview` (latest for gpt-4o-transcribe-diarize)
+- **Endpoint Pattern**: `https://<resource>.openai.azure.com/openai/deployments/<deployment-name>/audio/transcriptions?api-version=2025-04-01-preview`
+- **Authentication**: API key or Microsoft Entra ID
+
+Example configuration:
+```bash
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_API_VERSION=2025-04-01-preview
+MODEL_DEPLOYMENT_NAME=gpt-4o-transcribe-diarize
+```
+
+### Azure AI Foundry Models Endpoint (Alternative)
+For models deployed to Azure AI Foundry resources (endpoints like `*.services.ai.azure.com`):
+
+- **API Version**: `preview` (literal string, not date-based)
+- **Endpoint Pattern**: `https://<resource>.services.ai.azure.com/openai/v1/audio/transcriptions?api-version=preview`
+- **Authentication**: API key or Microsoft Entra ID
+- **Note**: Uses model name in request body instead of deployment path
+
+> **Important**: This repository is configured for **Azure OpenAI deployment-based endpoints**. If your model is deployed to Azure AI Foundry, update the endpoint URL pattern in the scripts.
 
 ## Authentication Options
 
