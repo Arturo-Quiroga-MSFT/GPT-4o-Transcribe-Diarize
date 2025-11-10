@@ -1,0 +1,21 @@
+# Placeholder for test audio files
+# Place your litigation deposition audio files here for testing
+
+# Supported formats:
+# - WAV
+# - MP3
+# - FLAC
+# - M4A
+# - WebM
+# - OGG
+
+# File naming suggestions:
+# - deposition_case_number_date.wav
+# - witness_name_testimony.mp3
+# - hearing_part1.flac
+
+# For best results with legal depositions:
+# - Use high-quality recordings (preferably 16kHz or higher sample rate)
+# - Ensure clear audio with minimal background noise
+# - Keep individual files under 25MB (API limit)
+# - For longer depositions, split into segments

@@ -1,0 +1,17 @@
+# Output directory for transcription results
+# All test scripts save their results here
+
+# File naming patterns:
+# - test_sdk.py: {audio_filename}_sdk_{timestamp}.json
+# - test_rest_api.py: {audio_filename}_rest_{timestamp}.json
+# - test_parameters.py: parameter_test_report_{timestamp}.json
+
+# Result format:
+# All results are saved as JSON files with:
+# - Metadata (timestamp, duration, audio file, etc.)
+# - Transcription text
+# - Speaker diarization segments
+# - Word-level timestamps (if requested)
+# - Log probabilities (if requested)
+
+# Note: This directory is automatically created by the test scripts

@@ -1,0 +1,20 @@
+# Azure OpenAI gpt-4o-transcribe-diarize Test Suite Requirements
+
+# Core Azure dependencies
+openai>=1.56.0
+azure-identity>=1.19.0
+
+# HTTP requests (for REST API tests)
+requests>=2.32.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Optional: Enhanced JSON handling
+# orjson>=3.10.0
+
+# Optional: Progress bars for batch processing
+# tqdm>=4.66.0
+
+# Optional: Audio file validation
+# pydub>=0.25.0
