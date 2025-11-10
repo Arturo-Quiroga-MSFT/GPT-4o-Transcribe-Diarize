@@ -63,12 +63,34 @@ print(response.json())
 - ❌ `verbose_json` explicitly rejected: `"response_format 'verbose_json' is not compatible with model 'gpt-4o-transcribe-diarize'"`
 - ❌ All parameter combinations tried (timestamp_granularities, chunking_strategy, include) - no segments
 
+## Investigation Results
+
+### Realtime API Compatibility
+**The Realtime API does NOT support `gpt-4o-transcribe-diarize` either.**
+
+According to the [API reference](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/reference-preview#components), the Realtime API's `input_audio_transcription.model` field only accepts:
+- `gpt-4o-transcribe`
+- `gpt-4o-mini-transcribe`
+- `whisper-1`
+
+The `gpt-4o-transcribe-diarize` model is **not listed** as a valid option for Realtime API transcription.
+
+### Documentation Contradiction
+
+The [What's New](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/whats-new#gpt-4o-audio-model-released) page states:
+
+> "Use this model via the `/audio` and `/realtime` APIs."
+
+However:
+- **`/audio/transcriptions` endpoint**: Only returns `{"text": "..."}` without speaker segments
+- **`/realtime` API**: Does not accept `gpt-4o-transcribe-diarize` in `input_audio_transcription.model`
+
 ## Questions
 
-1. Is diarization actually implemented in the `/audio/transcriptions` endpoint?
-2. Is this feature exclusive to the `/realtime` API?
-3. What is the correct response format when diarization works?
-4. Are there missing parameters needed to enable speaker segments?
+1. **Where can `gpt-4o-transcribe-diarize` actually be used?** Neither `/audio` nor `/realtime` APIs appear to support it properly.
+2. What is the correct API endpoint/method to access diarization features?
+3. Is the diarization feature deployed but undocumented?
+4. Is there a different API version that supports this model?
 
 ## Impact
 

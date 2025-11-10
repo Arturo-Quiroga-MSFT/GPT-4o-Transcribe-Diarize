@@ -163,19 +163,67 @@ All return only the `text` field, no segments:
 - [REST API Reference](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/reference-preview-latest)
 - No specific "How to use diarization" guide exists
 
+## Investigation Results: Realtime API
+
+### Testing Realtime API Compatibility
+
+We investigated whether the Realtime API supports `gpt-4o-transcribe-diarize` for transcription.
+
+**Finding:** The Realtime API **does NOT support** `gpt-4o-transcribe-diarize` either.
+
+According to the [API Reference (Components)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/reference-preview#components):
+
+```
+input_audio_transcription | object | Configuration of the transcription model
+└─ model | enum | The model to use for transcription. Can be `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, or `whisper-1`
+   Possible values: `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `whisper-1`
+```
+
+The `gpt-4o-transcribe-diarize` model is **conspicuously absent** from the allowed values.
+
+### Documentation Contradictions
+
+1. **What's New page says:**
+   > "Use this model via the `/audio` and `/realtime` APIs."
+   
+2. **Reality:**
+   - `/audio/transcriptions` REST endpoint: Accepts the model but returns only text
+   - `/realtime` API: Does NOT accept `gpt-4o-transcribe-diarize` in session configuration
+
+3. **Audio Events Reference:**
+   Lists `gpt-4o-transcribe-diarize` under `RealtimeAudioInputTranscriptionModel` allowed values, but the actual API schema contradicts this.
+
 ## Questions for Azure Team
 
-1. **Is diarization actually implemented?** The model name suggests it should work, but the API doesn't return speaker data.
+1. **Where can `gpt-4o-transcribe-diarize` actually be used?**
+   - Not working in `/audio/transcriptions` (no speaker segments)
+   - Not accepted in `/realtime` API (not in enum values)
+   - Is there a third, undocumented API endpoint?
 
-2. **Is this a Realtime API exclusive feature?** Does diarization only work through `/realtime` WebSocket API, not the `/audio/transcriptions` REST endpoint?
+2. **Is this model fully deployed?**
+   - The model deployment works in Azure AI Foundry
+   - The API accepts requests without error
+   - But diarization data is never returned
 
-3. **What's the correct response format?** What should the API response look like when diarization works?
+3. **What's the correct API endpoint/method?**
+   - Should we use a different URL path?
+   - Different API version?
+   - Different request format?
 
-4. **Are additional parameters required?** Is there an undocumented parameter needed to enable speaker segments?
+4. **Response format discrepancy:**
+   - What should the response look like when diarization works?
+   - Should it be in the main response or a separate field?
+   - Are there missing documentation examples?
 
-5. **Is this region-specific?** Does diarization only work in certain regions?
+5. **Is this feature actually released?**
+   - October 2025 announcement says "released"
+   - But no working implementation found in any API
+   - Is this a premature announcement?
 
-6. **What's the expected timeline?** If this feature isn't available yet, when will it be?
+6. **Regional or preview limitations?**
+   - Is diarization only in specific regions?
+   - Requires allowlist access?
+   - Still in private preview despite announcement?
 
 ## Impact
 
