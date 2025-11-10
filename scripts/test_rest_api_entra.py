@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Test script for Azure OpenAI gpt-4o-transcribe-diarize model using direct REST API calls
-Provides comprehensive testing of all API parameters including advanced options
+Test script for Azure OpenAI gpt-4o-transcribe-diarize model using REST API with Entra ID authentication
+Uses Microsoft Entra ID (Azure AD) for authentication instead of API keys
 """
 
 import os
@@ -19,30 +19,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_auth_headers(use_entra_id: bool = False) -> Dict[str, str]:
+def get_auth_headers() -> Dict[str, str]:
     """
-    Get authentication headers for API requests
-    
-    Args:
-        use_entra_id: If True, use Microsoft Entra ID, else use API key
+    Get authentication headers using Microsoft Entra ID
     
     Returns:
-        Dictionary of headers
+        Dictionary of headers with Bearer token
     """
-    headers = {"Content-Type": "multipart/form-data"}
+    print("Authenticating with Microsoft Entra ID...")
+    credential = DefaultAzureCredential()
+    token = credential.get_token("https://cognitiveservices.azure.com/.default")
     
-    if use_entra_id:
-        print("Using Microsoft Entra ID authentication...")
-        credential = DefaultAzureCredential()
-        token = credential.get_token("https://cognitiveservices.azure.com/.default")
-        headers["Authorization"] = f"Bearer {token.token}"
-    else:
-        print("Using API key authentication...")
-        api_key = os.getenv("AZURE_OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("AZURE_OPENAI_API_KEY environment variable is required")
-        headers["api-key"] = api_key
+    headers = {
+        "Authorization": f"Bearer {token.token}",
+        "Content-Type": "multipart/form-data"
+    }
     
+    print("✓ Successfully obtained Entra ID token")
     return headers
 
 
@@ -50,7 +43,6 @@ def build_multipart_data(
     audio_file_path: str,
     model: str,
     language: Optional[str] = None,
-    prompt: Optional[str] = None,
     response_format: str = "json",
     temperature: float = 0.0,
     timestamp_granularities: Optional[List[str]] = None,
@@ -65,7 +57,6 @@ def build_multipart_data(
         audio_file_path: Path to audio file
         model: Model deployment name
         language: Language code (ISO-639-1)
-        prompt: Optional guidance text (ignored for diarization models)
         response_format: Format type
         temperature: Sampling temperature
         timestamp_granularities: Timestamp levels
@@ -93,11 +84,7 @@ def build_multipart_data(
     if language:
         data['language'] = (None, language)
     
-    if prompt:
-        data['prompt'] = (None, prompt)
-    
-    # Response format handling
-    if response_format in ['json', 'verbose_json', 'text', 'srt', 'vtt']:
+    if response_format in ['json', 'text', 'srt', 'vtt']:
         data['response_format'] = (None, response_format)
     
     if timestamp_granularities:
@@ -118,30 +105,26 @@ def transcribe_audio_rest(
     audio_file_path: str,
     model: str = "gpt-4o-transcribe-diarize",
     language: Optional[str] = "en",
-    prompt: Optional[str] = None,
     response_format: str = "json",
     temperature: float = 0.0,
     timestamp_granularities: Optional[List[str]] = None,
     chunking_strategy: Optional[str] = None,
     include: Optional[List[str]] = None,
-    stream: bool = False,
-    use_entra_id: bool = False
+    stream: bool = False
 ) -> Dict[str, Any]:
     """
-    Transcribe audio using REST API with full parameter control
+    Transcribe audio using REST API with Entra ID authentication
     
     Args:
         audio_file_path: Path to audio file
         model: Model deployment name
         language: Language code
-        prompt: Optional guidance (ignored for diarization models)
         response_format: Response format
         temperature: Sampling temperature
         timestamp_granularities: Timestamp detail levels
         chunking_strategy: Voice Activity Detection configuration
         include: Additional response data (e.g., logprobs)
         stream: Enable streaming
-        use_entra_id: Use Entra ID authentication
     
     Returns:
         Transcription result dictionary
@@ -156,11 +139,10 @@ def transcribe_audio_rest(
         raise FileNotFoundError(f"Audio file not found: {audio_file_path}")
     
     # Construct URL using Azure OpenAI deployment-based endpoint pattern
-    # For Azure OpenAI endpoints (.openai.azure.com), use: /openai/deployments/{deployment-id}/audio/transcriptions
     url = f"{endpoint}openai/deployments/{model}/audio/transcriptions?api-version={api_version}"
     
     print(f"\n{'='*60}")
-    print(f"REST API Transcription")
+    print(f"REST API Transcription (Entra ID Auth)")
     print(f"{'='*60}")
     print(f"Endpoint: {endpoint}")
     print(f"API Version: {api_version}")
@@ -169,13 +151,6 @@ def transcribe_audio_rest(
     print(f"Language: {language}")
     print(f"Temperature: {temperature}")
     print(f"Response Format: {response_format}")
-    prompt_to_send = prompt
-    if prompt:
-        if "diarize" in model.lower():
-            print("Prompt provided but diarization models ignore prompt; skipping.")
-            prompt_to_send = None
-        else:
-            print(f"Prompt: {prompt}")
     if timestamp_granularities:
         print(f"Timestamp Granularities: {timestamp_granularities}")
     if chunking_strategy:
@@ -188,8 +163,8 @@ def transcribe_audio_rest(
     
     start_time = datetime.now()
     
-    # Get headers (without Content-Type as requests will set it for multipart)
-    auth_headers = get_auth_headers(use_entra_id)
+    # Get headers with Entra ID token (without Content-Type as requests will set it)
+    auth_headers = get_auth_headers()
     headers = {k: v for k, v in auth_headers.items() if k != "Content-Type"}
     
     # Build multipart data
@@ -197,7 +172,6 @@ def transcribe_audio_rest(
         audio_file_path=audio_file_path,
         model=model,
         language=language,
-        prompt=prompt_to_send,
         response_format=response_format,
         temperature=temperature,
         timestamp_granularities=timestamp_granularities,
@@ -216,13 +190,6 @@ def transcribe_audio_rest(
         
         print(f"✓ Transcription completed in {duration:.2f} seconds")
         print(f"✓ Status Code: {response.status_code}")
-        
-        # Debug: Print raw response
-        print(f"\n{'='*60}")
-        print("RAW API RESPONSE:")
-        print(f"{'='*60}")
-        print(json.dumps(response.json() if response.headers.get('content-type', '').startswith('application/json') else {"text": response.text}, indent=2))
-        print(f"{'='*60}\n")
         
         # Parse response based on format
         if response_format in ['json', 'verbose_json']:
@@ -269,7 +236,7 @@ def save_results(
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     base_name = Path(audio_filename).stem
-    output_file = os.path.join(output_dir, f"{base_name}_rest_{timestamp}.json")
+    output_file = os.path.join(output_dir, f"{base_name}_rest_entra_{timestamp}.json")
     
     output_data = {
         "metadata": {
@@ -277,7 +244,8 @@ def save_results(
             "duration_seconds": result_data["duration_seconds"],
             "audio_file": audio_filename,
             "status_code": result_data["status_code"],
-            "api_method": "REST API"
+            "api_method": "REST API (Entra ID)",
+            "authentication": "Microsoft Entra ID"
         },
         "transcription": result_data["result"]
     }
@@ -338,7 +306,7 @@ def display_transcription_summary(result: Dict[str, Any]):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Test Azure OpenAI gpt-4o-transcribe-diarize model with REST API"
+        description="Test Azure OpenAI gpt-4o-transcribe-diarize with Entra ID authentication"
     )
     parser.add_argument(
         "--audio",
@@ -359,11 +327,6 @@ def main():
         help="Language code (ISO-639-1)"
     )
     parser.add_argument(
-        "--prompt",
-        type=str,
-        help="Guidance prompt for the model (ignored for diarization deployments)"
-    )
-    parser.add_argument(
         "--temperature",
         type=float,
         default=0.0,
@@ -373,7 +336,7 @@ def main():
         "--response-format",
         type=str,
         default="json",
-        choices=["json", "verbose_json", "text", "srt", "vtt"],
+        choices=["json", "text", "srt", "vtt"],
         help="Response format"
     )
     parser.add_argument(
@@ -384,7 +347,7 @@ def main():
     parser.add_argument(
         "--include-logprobs",
         action="store_true",
-        help="Include log probabilities (requires verbose_json)"
+        help="Include log probabilities"
     )
     parser.add_argument(
         "--chunking-strategy",
@@ -394,32 +357,9 @@ def main():
         help="Chunking strategy type"
     )
     parser.add_argument(
-        "--vad-threshold",
-        type=float,
-        default=0.5,
-        help="VAD threshold (0.0-1.0, higher = more noise tolerance)"
-    )
-    parser.add_argument(
-        "--vad-silence-duration",
-        type=int,
-        default=200,
-        help="Silence duration in ms to detect speech end"
-    )
-    parser.add_argument(
-        "--vad-prefix-padding",
-        type=int,
-        default=300,
-        help="Audio padding before speech in ms"
-    )
-    parser.add_argument(
         "--stream",
         action="store_true",
         help="Enable streaming response"
-    )
-    parser.add_argument(
-        "--use-entra-id",
-        action="store_true",
-        help="Use Microsoft Entra ID authentication"
     )
     parser.add_argument(
         "--output-dir",
@@ -445,7 +385,7 @@ def main():
         chunking_strategy = None
         if args.chunking_strategy == "server_vad":
             chunking_strategy = "auto"
-            print("Using chunking_strategy='auto' (server-managed VAD). Custom VAD parameters are not currently exposed.")
+            print("Using chunking_strategy='auto' (server-managed VAD)")
         
         # Build include list
         include = None
@@ -460,14 +400,12 @@ def main():
             audio_file_path=args.audio,
             model=args.model,
             language=args.language,
-            prompt=args.prompt,
             response_format=args.response_format,
             temperature=args.temperature,
             timestamp_granularities=timestamp_granularities,
             chunking_strategy=chunking_strategy,
             include=include,
-            stream=args.stream,
-            use_entra_id=args.use_entra_id
+            stream=args.stream
         )
         
         # Display summary
@@ -481,7 +419,7 @@ def main():
                 audio_filename=args.audio
             )
         
-        print("\n✓ Test completed successfully!")
+        print("\n✓ Test completed successfully with Entra ID authentication!")
         return 0
         
     except Exception as e:
