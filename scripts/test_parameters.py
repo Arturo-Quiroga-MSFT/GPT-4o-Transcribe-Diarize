@@ -13,6 +13,10 @@ from datetime import datetime
 from typing import Dict, Any, List, Optional
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 class ParameterTester:

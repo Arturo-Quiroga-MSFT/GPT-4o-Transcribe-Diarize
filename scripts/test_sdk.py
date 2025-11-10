@@ -13,6 +13,10 @@ from pathlib import Path
 from typing import Optional, Dict, Any
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def setup_client(use_entra_id: bool = False) -> AzureOpenAI:

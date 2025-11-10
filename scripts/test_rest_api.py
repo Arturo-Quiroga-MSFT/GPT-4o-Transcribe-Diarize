@@ -13,6 +13,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, Dict, Any, List
 from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def get_auth_headers(use_entra_id: bool = False) -> Dict[str, str]:
