@@ -35,6 +35,13 @@ class ParameterTester:
         self.audio_file_path = audio_file_path
         self.model = model
         self.use_entra_id = use_entra_id
+        self.prompts_supported = "diarize" not in model.lower()
+        self.chunking_strategy = {
+            "type": "server_vad",
+            "threshold": 0.5,
+            "silence_duration_ms": 200,
+            "prefix_padding_ms": 300
+        }
         self.client = self._setup_client()
         self.results: List[Dict[str, Any]] = []
         
@@ -92,8 +99,9 @@ class ParameterTester:
                         file=audio,
                         model=self.model,
                         temperature=temp,
-                        response_format="verbose_json",
-                        timestamp_granularities=["segment"]
+                        response_format="json",
+                        timestamp_granularities=["segment"],
+                        chunking_strategy=self.chunking_strategy
                     )
                     
                     duration = (datetime.now() - start_time).total_seconds()
@@ -152,8 +160,9 @@ class ParameterTester:
                     kwargs = {
                         "file": audio,
                         "model": self.model,
-                        "response_format": "verbose_json",
-                        "timestamp_granularities": ["segment"]
+                        "response_format": "json",
+                        "timestamp_granularities": ["segment"],
+                        "chunking_strategy": self.chunking_strategy
                     }
                     if lang:
                         kwargs["language"] = lang
@@ -206,6 +215,18 @@ class ParameterTester:
                 "Q&A format deposition with attorney and witness."
             ]
         
+        if not self.prompts_supported:
+            print("Prompt parameter not supported for this model; skipping prompt tests.")
+            self.results.append({
+                "test_type": "prompt",
+                "parameter": "prompt",
+                "value": "skipped",
+                "timestamp": datetime.now().isoformat(),
+                "error": "prompt unsupported for model",
+                "success": False
+            })
+            return
+
         print(f"\n{'='*60}")
         print(f"Testing Prompt Variations")
         print(f"{'='*60}\n")
@@ -223,8 +244,9 @@ class ParameterTester:
                     kwargs = {
                         "file": audio,
                         "model": self.model,
-                        "response_format": "verbose_json",
-                        "timestamp_granularities": ["segment"]
+                        "response_format": "json",
+                        "timestamp_granularities": ["segment"],
+                        "chunking_strategy": self.chunking_strategy
                     }
                     if prompt:
                         kwargs["prompt"] = prompt
@@ -268,7 +290,7 @@ class ParameterTester:
             formats: List of response formats to test
         """
         if formats is None:
-            formats = ["json", "verbose_json", "text", "srt", "vtt"]
+            formats = ["json", "text", "srt", "vtt"]
         
         print(f"\n{'='*60}")
         print(f"Testing Response Formats")
@@ -283,7 +305,8 @@ class ParameterTester:
                     result = self.client.audio.transcriptions.create(
                         file=audio,
                         model=self.model,
-                        response_format=fmt
+                        response_format=fmt,
+                        chunking_strategy=self.chunking_strategy
                     )
                     
                     duration = (datetime.now() - start_time).total_seconds()
@@ -345,8 +368,9 @@ class ParameterTester:
                     result = self.client.audio.transcriptions.create(
                         file=audio,
                         model=self.model,
-                        response_format="verbose_json",
-                        timestamp_granularities=granularities
+                        response_format="json",
+                        timestamp_granularities=granularities,
+                        chunking_strategy=self.chunking_strategy
                     )
                     
                     duration = (datetime.now() - start_time).total_seconds()

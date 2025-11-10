@@ -51,7 +51,7 @@ def build_multipart_data(
     model: str,
     language: Optional[str] = None,
     prompt: Optional[str] = None,
-    response_format: str = "verbose_json",
+    response_format: str = "json",
     temperature: float = 0.0,
     timestamp_granularities: Optional[List[str]] = None,
     chunking_strategy: Optional[Dict[str, Any]] = None,
@@ -65,7 +65,7 @@ def build_multipart_data(
         audio_file_path: Path to audio file
         model: Model deployment name
         language: Language code (ISO-639-1)
-        prompt: Optional guidance text
+        prompt: Optional guidance text (ignored for diarization models)
         response_format: Format type
         temperature: Sampling temperature
         timestamp_granularities: Timestamp levels
@@ -99,8 +99,6 @@ def build_multipart_data(
     # Response format handling
     if response_format in ['json', 'text', 'srt', 'vtt']:
         data['response_format'] = (None, response_format)
-    elif response_format == 'verbose_json':
-        data['response_format'] = (None, json.dumps({"type": "verbose_json"}))
     
     if timestamp_granularities:
         for granularity in timestamp_granularities:
@@ -121,7 +119,7 @@ def transcribe_audio_rest(
     model: str = "gpt-4o-transcribe-diarize",
     language: Optional[str] = "en",
     prompt: Optional[str] = None,
-    response_format: str = "verbose_json",
+    response_format: str = "json",
     temperature: float = 0.0,
     timestamp_granularities: Optional[List[str]] = None,
     chunking_strategy: Optional[Dict[str, Any]] = None,
@@ -136,7 +134,7 @@ def transcribe_audio_rest(
         audio_file_path: Path to audio file
         model: Model deployment name
         language: Language code
-        prompt: Optional guidance
+        prompt: Optional guidance (ignored for diarization models)
         response_format: Response format
         temperature: Sampling temperature
         timestamp_granularities: Timestamp detail levels
@@ -170,8 +168,13 @@ def transcribe_audio_rest(
     print(f"Language: {language}")
     print(f"Temperature: {temperature}")
     print(f"Response Format: {response_format}")
+    prompt_to_send = prompt
     if prompt:
-        print(f"Prompt: {prompt}")
+        if "diarize" in model.lower():
+            print("Prompt provided but diarization models ignore prompt; skipping.")
+            prompt_to_send = None
+        else:
+            print(f"Prompt: {prompt}")
     if timestamp_granularities:
         print(f"Timestamp Granularities: {timestamp_granularities}")
     if chunking_strategy:
@@ -193,7 +196,7 @@ def transcribe_audio_rest(
         audio_file_path=audio_file_path,
         model=model,
         language=language,
-        prompt=prompt,
+        prompt=prompt_to_send,
         response_format=response_format,
         temperature=temperature,
         timestamp_granularities=timestamp_granularities,
@@ -350,7 +353,7 @@ def main():
     parser.add_argument(
         "--prompt",
         type=str,
-        help="Guidance prompt for the model"
+        help="Guidance prompt for the model (ignored for diarization deployments)"
     )
     parser.add_argument(
         "--temperature",
@@ -361,9 +364,9 @@ def main():
     parser.add_argument(
         "--response-format",
         type=str,
-        default="verbose_json",
-        choices=["json", "verbose_json", "text", "srt", "vtt"],
-        help="Response format"
+        default="json",
+        choices=["json", "text", "srt", "vtt"],
+        help="Response format (verbose_json not supported by gpt-4o-transcribe-diarize)"
     )
     parser.add_argument(
         "--word-timestamps",

@@ -67,9 +67,12 @@ def transcribe_audio(
     model: str = "gpt-4o-transcribe-diarize",
     language: Optional[str] = "en",
     prompt: Optional[str] = None,
-    response_format: str = "verbose_json",
+    response_format: str = "json",
     temperature: float = 0.0,
-    timestamp_granularities: Optional[list] = None
+    timestamp_granularities: Optional[list] = None,
+    vad_threshold: float = 0.5,
+    vad_prefix_padding_ms: int = 300,
+    vad_silence_duration_ms: int = 200
 ) -> Dict[str, Any]:
     """
     Transcribe audio file with diarization using Azure OpenAI
@@ -79,10 +82,13 @@ def transcribe_audio(
         audio_file_path: Path to the audio file
         model: Model deployment name
         language: ISO-639-1 language code (e.g., 'en')
-        prompt: Optional text to guide the model's style or provide context
-        response_format: Format of the response (json, verbose_json, text, srt, vtt)
+        prompt: Optional text to guide the model's style (ignored for diarization models)
+        response_format: Format of the response (json, text, srt, vtt)
         temperature: Sampling temperature (0-1)
         timestamp_granularities: List of timestamp levels (word, segment)
+        vad_threshold: Voice activity detection threshold (0.0-1.0, default: 0.5)
+        vad_prefix_padding_ms: Audio before VAD speech in ms (default: 300)
+        vad_silence_duration_ms: Silence duration to detect speech stop in ms (default: 200)
     
     Returns:
         Transcription result dictionary
@@ -96,8 +102,14 @@ def transcribe_audio(
     print(f"Language: {language}")
     print(f"Temperature: {temperature}")
     print(f"Response Format: {response_format}")
+    print(f"VAD Threshold: {vad_threshold}")
+    print(f"VAD Prefix Padding: {vad_prefix_padding_ms}ms")
+    print(f"VAD Silence Duration: {vad_silence_duration_ms}ms")
     if prompt:
-        print(f"Prompt: {prompt}")
+        if "diarize" in model.lower():
+            print("Prompt provided but diarization models ignore prompt; skipping.")
+        else:
+            print(f"Prompt: {prompt}")
     if timestamp_granularities:
         print(f"Timestamp Granularities: {timestamp_granularities}")
     print(f"{'='*60}\n")
@@ -105,19 +117,32 @@ def transcribe_audio(
     start_time = datetime.now()
     
     with open(audio_file_path, 'rb') as audio_file:
+        # Build chunking_strategy (REQUIRED for diarization models)
+        chunking_strategy = {
+            "type": "server_vad",
+            "threshold": vad_threshold,
+            "prefix_padding_ms": vad_prefix_padding_ms,
+            "silence_duration_ms": vad_silence_duration_ms
+        }
+        
         # Build parameters
         params = {
             "file": audio_file,
             "model": model,
             "response_format": response_format,
-            "temperature": temperature
+            "temperature": temperature,
+            "chunking_strategy": chunking_strategy  # Required for gpt-4o-transcribe-diarize
         }
         
         if language:
             params["language"] = language
         
         if prompt:
-            params["prompt"] = prompt
+            if "diarize" in model.lower():
+                # Diarization models reject prompt field, so warn once and skip it
+                print("Warning: prompt parameter is not supported for diarization models; dropping prompt.")
+            else:
+                params["prompt"] = prompt
         
         if timestamp_granularities:
             params["timestamp_granularities"] = timestamp_granularities
@@ -264,14 +289,32 @@ def main():
     parser.add_argument(
         "--response-format",
         type=str,
-        default="verbose_json",
-        choices=["json", "verbose_json", "text", "srt", "vtt"],
-        help="Response format (default: verbose_json)"
+        default="json",
+        choices=["json", "text", "srt", "vtt"],
+        help="Response format (default: json; verbose_json not supported by gpt-4o-transcribe-diarize)"
     )
     parser.add_argument(
         "--word-timestamps",
         action="store_true",
         help="Include word-level timestamps"
+    )
+    parser.add_argument(
+        "--vad-threshold",
+        type=float,
+        default=0.5,
+        help="Voice activity detection threshold 0.0-1.0 (default: 0.5, higher = require louder audio)"
+    )
+    parser.add_argument(
+        "--vad-prefix-padding",
+        type=int,
+        default=300,
+        help="Audio to include before VAD detected speech in milliseconds (default: 300)"
+    )
+    parser.add_argument(
+        "--vad-silence-duration",
+        type=int,
+        default=200,
+        help="Silence duration to detect speech stop in milliseconds (default: 200)"
     )
     parser.add_argument(
         "--use-entra-id",
@@ -310,7 +353,10 @@ def main():
             prompt=args.prompt,
             response_format=args.response_format,
             temperature=args.temperature,
-            timestamp_granularities=timestamp_granularities
+            timestamp_granularities=timestamp_granularities,
+            vad_threshold=args.vad_threshold,
+            vad_prefix_padding_ms=args.vad_prefix_padding,
+            vad_silence_duration_ms=args.vad_silence_duration
         )
         
         # Display summary

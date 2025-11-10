@@ -35,11 +35,26 @@ The model automatically identifies different speakers and attributes text to eac
 - **Log probabilities**: Understand model confidence in transcription
 - **Timestamp granularities**: Word-level and segment-level timing
 
-### Chunking Strategy
-Server-side Voice Activity Detection (VAD) for optimal audio segmentation:
+### Chunking Strategy (REQUIRED)
+**Server-side Voice Activity Detection (VAD) for optimal audio segmentation:**
+
+⚠️ **CRITICAL**: The `chunking_strategy` parameter is **REQUIRED** for `gpt-4o-transcribe-diarize`. Requests without it will fail with a 400 error.
+
+Parameters:
+- `type`: Must be `"server_vad"`
 - `prefix_padding_ms`: Audio before speech (default: 300ms)
 - `silence_duration_ms`: Silence threshold to detect speech end (default: 200ms)
 - `threshold`: Sensitivity (0.0-1.0, default: 0.5) - higher for noisy environments
+
+**Example structure:**
+```json
+{
+  "type": "server_vad",
+  "threshold": 0.5,
+  "prefix_padding_ms": 300,
+  "silence_duration_ms": 200
+}
+```
 
 ## Repository Structure
 
@@ -145,16 +160,18 @@ python scripts/test_parameters.py --audio test_audio/deposition.wav --test-all
 |-----------|------|-------------|---------|
 | `file` | binary | Audio file (required) | - |
 | `model` | string | Model name: `gpt-4o-transcribe-diarize` | - |
+| `chunking_strategy` | object | **REQUIRED**: VAD configuration (see below) | **REQUIRED** |
 | `language` | string | ISO-639-1 code (e.g., `en`) | Auto-detect |
-| `prompt` | string | Free-text guidance for style/context | - |
-| `response_format` | object | Output format (json/text/srt/vtt) | json |
+| `prompt` | string | Free-text guidance (not supported for diarization models) | - |
+| `response_format` | object | Output format: `json`, `text`, `srt`, `vtt` (NOT `verbose_json`) | json |
 | `temperature` | float | Sampling temperature (0-1) | 0 |
 | `timestamp_granularities` | array | `['word']` and/or `['segment']` | ['segment'] |
 | `stream` | boolean | Enable streaming response | false |
 
 ### Advanced Parameters
 
-#### Chunking Strategy (VAD)
+#### Chunking Strategy (VAD) - REQUIRED
+⚠️ **This parameter is mandatory for `gpt-4o-transcribe-diarize`:**
 ```json
 {
   "chunking_strategy": {
@@ -170,6 +187,8 @@ python scripts/test_parameters.py --audio test_audio/deposition.wav --test-all
 - `logprobs`: Returns confidence scores (only with `response_format: json`)
 
 ### Response Format
+
+> **Important:** The `prompt` parameter is rejected by `gpt-4o-transcribe-diarize`. Remove it or expect a 400 `invalid_value` error.
 
 With diarization, the response includes speaker identification:
 
@@ -212,12 +231,18 @@ With diarization, the response includes speaker identification:
 
 ## Best Practices for Legal Depositions
 
+### ⚠️ Critical Requirements
+1. **Always include `chunking_strategy`** - This parameter is REQUIRED for `gpt-4o-transcribe-diarize`. Your request will fail without it.
+2. **Use `"json"` response format** - The `verbose_json` format is NOT supported by this model.
+
 ### 1. Audio Quality
+### 2. Audio Quality
 - Use high-quality recordings (minimum 16kHz sampling rate)
 - WAV, MP3, FLAC formats supported
 - Minimize background noise
 
-### 2. Language Specification
+### 3. Language Specification
+### 3. Language Specification
 Always specify the language for:
 - Better accuracy
 - Lower latency
@@ -225,17 +250,17 @@ Always specify the language for:
 language="en"  # English
 ```
 
-### 3. Prompt Engineering
+### 4. Prompt Engineering
 Provide context for better transcription:
 ```python
 prompt="Legal deposition with attorney and witness. Expect legal terminology, medical terms, and technical language."
 ```
 
-### 4. Temperature Setting
+### 5. Temperature Setting
 - Use `0.0` (default) for deterministic, focused transcription
 - Increase slightly (0.1-0.2) if model seems too conservative
 
-### 5. Chunking Strategy
+### 6. Chunking Strategy
 For noisy courtroom environments:
 ```python
 chunking_strategy={
@@ -246,13 +271,14 @@ chunking_strategy={
 }
 ```
 
-### 6. Timestamp Granularities
+### 7. Timestamp Granularities
+### 7. Timestamp Granularities
 Request both for detailed analysis:
 ```python
 timestamp_granularities=["word", "segment"]
 ```
 
-### 7. Log Probabilities
+### 8. Log Probabilities
 Enable for quality assessment:
 ```python
 include=["logprobs"],
