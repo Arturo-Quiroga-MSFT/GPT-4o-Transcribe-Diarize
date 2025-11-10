@@ -54,7 +54,7 @@ def build_multipart_data(
     response_format: str = "json",
     temperature: float = 0.0,
     timestamp_granularities: Optional[List[str]] = None,
-    chunking_strategy: Optional[Dict[str, Any]] = None,
+    chunking_strategy: Optional[str] = None,
     include: Optional[List[str]] = None,
     stream: bool = False
 ) -> Dict[str, Any]:
@@ -105,7 +105,7 @@ def build_multipart_data(
             data[f'timestamp_granularities'] = (None, granularity)
     
     if chunking_strategy:
-        data['chunking_strategy'] = (None, json.dumps(chunking_strategy))
+        data['chunking_strategy'] = (None, chunking_strategy)
     
     if include:
         for item in include:
@@ -122,7 +122,7 @@ def transcribe_audio_rest(
     response_format: str = "json",
     temperature: float = 0.0,
     timestamp_granularities: Optional[List[str]] = None,
-    chunking_strategy: Optional[Dict[str, Any]] = None,
+    chunking_strategy: Optional[str] = None,
     include: Optional[List[str]] = None,
     stream: bool = False,
     use_entra_id: bool = False
@@ -147,7 +147,7 @@ def transcribe_audio_rest(
         Transcription result dictionary
     """
     endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-01-01-preview")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
     
     if not endpoint:
         raise ValueError("AZURE_OPENAI_ENDPOINT environment variable is required")
@@ -156,7 +156,7 @@ def transcribe_audio_rest(
         raise FileNotFoundError(f"Audio file not found: {audio_file_path}")
     
     # Construct URL
-    url = f"{endpoint}/openai/v1/audio/transcriptions?api-version={api_version}"
+    url = f"{endpoint}openai/v1/audio/transcriptions?api-version={api_version}"
     
     print(f"\n{'='*60}")
     print(f"REST API Transcription")
@@ -178,7 +178,7 @@ def transcribe_audio_rest(
     if timestamp_granularities:
         print(f"Timestamp Granularities: {timestamp_granularities}")
     if chunking_strategy:
-        print(f"Chunking Strategy: {json.dumps(chunking_strategy, indent=2)}")
+        print(f"Chunking Strategy: {chunking_strategy}")
     if include:
         print(f"Include: {include}")
     if stream:
@@ -436,12 +436,8 @@ def main():
         # Build chunking strategy
         chunking_strategy = None
         if args.chunking_strategy == "server_vad":
-            chunking_strategy = {
-                "type": "server_vad",
-                "threshold": args.vad_threshold,
-                "silence_duration_ms": args.vad_silence_duration,
-                "prefix_padding_ms": args.vad_prefix_padding
-            }
+            chunking_strategy = "auto"
+            print("Using chunking_strategy='auto' (server-managed VAD). Custom VAD parameters are not currently exposed.")
         
         # Build include list
         include = None

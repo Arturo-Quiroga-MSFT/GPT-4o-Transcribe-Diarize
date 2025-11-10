@@ -104,7 +104,7 @@ cp config/.env.example .env
 Required environment variables:
 - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint (e.g., https://your-resource.openai.azure.com)
 - `AZURE_OPENAI_API_KEY`: Your API key (or use Entra ID authentication)
-- `AZURE_OPENAI_API_VERSION`: API version (default: 2025-01-01-preview)
+- `AZURE_OPENAI_API_VERSION`: API version (default: 2025-03-01-preview)
 
 ## Test Scripts
 
@@ -299,7 +299,7 @@ response_format={"type": "json"}
 - Diarization accuracy varies with audio quality and speaker overlap
 
 ## API Versions
-- Current: `2025-01-01-preview` (recommended)
+- Current: `2025-03-01-preview` (recommended)
 - Previous: `2024-11-01-preview`
 
 ## Authentication Options
@@ -310,7 +310,7 @@ from openai import AzureOpenAI
 
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    api_version="2025-01-01-preview",
+  api_version="2025-03-01-preview",
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
 )
 ```
@@ -327,7 +327,7 @@ token_provider = get_bearer_token_provider(
 
 client = AzureOpenAI(
     azure_ad_token_provider=token_provider,
-    api_version="2025-01-01-preview",
+  api_version="2025-03-01-preview",
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
 )
 ```

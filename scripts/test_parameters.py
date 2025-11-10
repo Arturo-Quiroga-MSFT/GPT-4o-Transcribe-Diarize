@@ -36,19 +36,14 @@ class ParameterTester:
         self.model = model
         self.use_entra_id = use_entra_id
         self.prompts_supported = "diarize" not in model.lower()
-        self.chunking_strategy = {
-            "type": "server_vad",
-            "threshold": 0.5,
-            "silence_duration_ms": 200,
-            "prefix_padding_ms": 300
-        }
+        self.chunking_strategy = "auto"
         self.client = self._setup_client()
         self.results: List[Dict[str, Any]] = []
         
     def _setup_client(self) -> AzureOpenAI:
         """Setup Azure OpenAI client with appropriate authentication"""
         endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-        api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-01-01-preview")
+        api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
         
         if not endpoint:
             raise ValueError("AZURE_OPENAI_ENDPOINT environment variable is required")

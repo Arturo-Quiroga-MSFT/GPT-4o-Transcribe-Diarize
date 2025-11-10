@@ -30,7 +30,7 @@ def setup_client(use_entra_id: bool = False) -> AzureOpenAI:
         Configured AzureOpenAI client
     """
     endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-01-01-preview")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
     
     if not endpoint:
         raise ValueError("AZURE_OPENAI_ENDPOINT environment variable is required")
@@ -105,6 +105,7 @@ def transcribe_audio(
     print(f"VAD Threshold: {vad_threshold}")
     print(f"VAD Prefix Padding: {vad_prefix_padding_ms}ms")
     print(f"VAD Silence Duration: {vad_silence_duration_ms}ms")
+    print("Chunking Strategy: auto (server-managed VAD)")
     if prompt:
         if "diarize" in model.lower():
             print("Prompt provided but diarization models ignore prompt; skipping.")
@@ -117,14 +118,9 @@ def transcribe_audio(
     start_time = datetime.now()
     
     with open(audio_file_path, 'rb') as audio_file:
-        # Build chunking_strategy (REQUIRED for diarization models)
-        chunking_strategy = {
-            "type": "server_vad",
-            "threshold": vad_threshold,
-            "prefix_padding_ms": vad_prefix_padding_ms,
-            "silence_duration_ms": vad_silence_duration_ms
-        }
-        
+        # Azure now expects the literal string "auto" for diarization chunking
+        chunking_strategy = "auto"
+
         # Build parameters
         params = {
             "file": audio_file,
