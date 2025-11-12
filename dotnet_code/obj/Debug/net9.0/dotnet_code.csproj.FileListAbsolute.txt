@@ -1,0 +1,15 @@
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/bin/Debug/net9.0/dotnet_code
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/bin/Debug/net9.0/dotnet_code.deps.json
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/bin/Debug/net9.0/dotnet_code.runtimeconfig.json
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/bin/Debug/net9.0/dotnet_code.dll
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/bin/Debug/net9.0/dotnet_code.pdb
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.GeneratedMSBuildEditorConfig.editorconfig
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.AssemblyInfoInputs.cache
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.AssemblyInfo.cs
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.csproj.CoreCompileInputs.cache
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.sourcelink.json
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.dll
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/refint/dotnet_code.dll
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.pdb
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/dotnet_code.genruntimeconfig.cache
+/Users/arturoquiroga/GITHUB/GPT-4o-Transcribe-Diarize/dotnet_code/obj/Debug/net9.0/ref/dotnet_code.dll
