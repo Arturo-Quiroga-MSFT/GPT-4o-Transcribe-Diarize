@@ -13,11 +13,23 @@ This test suite provides enterprise-grade tools for evaluating and implementing 
 ## Model Overview
 
 The `gpt-4o-transcribe-diarize` model is an Automatic Speech Recognition (ASR) model that:
-- Converts spoken language into text in real-time
+- Converts spoken language into text
 - **Identifies who spoke when** (diarization) - critical for legal proceedings
 - Supports 100+ languages
-- Provides ultra-low latency with high accuracy
-- Available via `/audio/transcriptions` REST API
+- Provides high accuracy transcription with speaker identification
+- Available via `/audio/transcriptions` REST API endpoint
+
+### Important Discovery: `diarized_json` Response Format
+
+**The key to enabling speaker diarization is using the undocumented `diarized_json` response format.**
+
+While the official Azure OpenAI documentation lists `json`, `text`, `srt`, `vtt`, and `verbose_json` as available response formats, **only `diarized_json` returns speaker identification**. This was discovered through direct communication with Azure support engineering.
+
+```python
+response_format="diarized_json"  # Required for speaker diarization
+```
+
+**Without this specific format, you will only receive the full text without speaker labels.**
 
 ## Key Features for Legal Use
 
@@ -35,42 +47,49 @@ The model automatically identifies different speakers and attributes text to eac
 - **Log probabilities**: Understand model confidence in transcription
 - **Timestamp granularities**: Word-level and segment-level timing
 
-### Chunking Strategy (REQUIRED)
-**Simple string format for server-managed VAD:**
+### Response Format for Diarization
 
-⚠️ **CRITICAL**: The `chunking_strategy` parameter is **REQUIRED** for `gpt-4o-transcribe-diarize`. Requests without it will fail with a 400 error.
+⚠️ **CRITICAL DISCOVERY**: To get speaker diarization, you **must** use:
 
-**Current Implementation:**
 ```python
-chunking_strategy="auto"  # Only accepted value
+response_format="diarized_json"
 ```
 
-> **Note**: While API documentation describes detailed VAD configuration options, the model currently only accepts the string `"auto"`. The server automatically manages Voice Activity Detection with optimized parameters.
+**This format is undocumented** but is the only way to receive speaker identification. Standard formats (`json`, `text`, `verbose_json`) return only the transcript text without speaker labels.
 
-**Example in REST API:**
-```python
-data = {
-    'chunking_strategy': (None, 'auto')
-}
-```
+### Additional Parameters
+
+- **`timestamp_granularities`**: Use `["segment"]` to get detailed timing for each speaker segment
+- **`language`**: Specify `"en"` for English to improve accuracy
+- **`temperature`**: Use `"0"` (as string) for deterministic output
+- **`chunking_strategy`**: Use `"auto"` for automatic voice activity detection
 
 ## Repository Structure
 
 ```
 GPT-4o-Transcribe-Diarize/
-├── README.md                    # This file
-├── requirements.txt             # Python dependencies
-├── test_audio/                  # Place your test audio files here
-│   └── .gitkeep
-├── output/                      # Transcription results
-│   └── .gitkeep
+├── README.md                           # This file
+├── SOLUTION_FOUND.md                   # Documentation of diarized_json discovery
+├── GITHUB_RESPONSE.md                  # Comprehensive response for Azure documentation
+├── requirements.txt                    # Python dependencies
+├── .env.eastus2                        # East US 2 deployment credentials
+├── depositions/                        # Legal deposition audio files
+│   ├── Peters, Rod 12132021/          # ~30 minute deposition
+│   └── Peters, Teresa 12132021/       # ~25 minute deposition
+├── output/
+│   └── depositions_eastus2/           # Production transcription results
+│       ├── Rod Peters mp3.json        # Complete: 6 chunks, 630 segments, 76,988 tokens
+│       └── Teresa Peters mp3.json     # Partial: 4/5 chunks (chunk 4 failed)
 ├── scripts/
-│   ├── test_sdk.py             # Python SDK-based tests
-│   ├── test_rest_api.py        # Direct REST API tests
-│   ├── test_parameters.py      # Systematic parameter testing
-│   └── utils.py                # Shared utilities
-└── config/
-    └── .env.example            # Environment variable template
+│   ├── test_rest_api.py               # REST API with diarized_json support
+│   ├── test_rest_api_entra.py         # Entra ID authentication version
+│   ├── test_sdk.py                    # Python SDK tests
+│   ├── test_eastus2.py                # East US 2 deployment validation
+│   ├── process_depositions_eastus2.py # Production processing script (5-min chunks)
+│   ├── retry_teresa_chunks.py         # Retry failed chunks
+│   ├── retry_chunk4_only.py           # Aggressive retry for stubborn chunk
+│   └── generate_text_outputs.py       # Convert JSON to readable text
+└── test_audio/                        # Test audio samples
 ```
 
 ## Setup
@@ -185,103 +204,143 @@ python scripts/test_parameters.py --audio test_audio/deposition.wav --test-all
 #### Include Options
 - `logprobs`: Returns confidence scores (only with `response_format: json`)
 
-### Response Format
+### Response Format with `diarized_json`
 
-> **Important:** The `prompt` parameter is rejected by `gpt-4o-transcribe-diarize`. Remove it or expect a 400 `invalid_value` error.
-
-With diarization, the response includes speaker identification:
+When using `response_format="diarized_json"`, the response structure includes speaker identification:
 
 ```json
 {
-  "text": "Full transcript",
+  "text": "Full transcript with all speakers combined",
   "segments": [
     {
-      "id": 0,
-      "speaker": "SPEAKER_00",
+      "type": "transcript.text.segment",
+      "text": " This is the attorney speaking.",
+      "speaker": "A",
       "start": 0.0,
       "end": 5.2,
-      "text": "This is the attorney speaking.",
-      "tokens": [...],
-      "temperature": 0.0,
-      "avg_logprob": -0.25,
-      "compression_ratio": 1.3,
-      "no_speech_prob": 0.01
+      "id": "seg_0"
     },
     {
-      "id": 1,
-      "speaker": "SPEAKER_01",
+      "type": "transcript.text.segment",
+      "text": " This is the witness responding.",
+      "speaker": "B",
       "start": 5.5,
       "end": 12.8,
-      "text": "This is the witness responding.",
-      ...
+      "id": "seg_1"
     }
   ],
-  "words": [
-    {
-      "word": "This",
-      "start": 0.0,
-      "end": 0.3,
-      "speaker": "SPEAKER_00"
+  "usage": {
+    "prompt_tokens": 1234,
+    "prompt_tokens_details": {
+      "audio_tokens": 1200,
+      "text_tokens": 34
     },
-    ...
-  ]
+    "completion_tokens": 5678,
+    "total_tokens": 6912
+  }
 }
 ```
+
+**Key differences from standard formats:**
+- Speakers are labeled alphabetically: `"A"`, `"B"`, `"C"`, etc.
+- Each segment includes precise timestamps (start/end in seconds)
+- Includes token usage details for cost tracking
+- Text segments are precise with speaker attribution
 
 ## Best Practices for Legal Depositions
 
 ### ⚠️ Critical Requirements
-1. **Always include `chunking_strategy`** - This parameter is REQUIRED for `gpt-4o-transcribe-diarize`. Your request will fail without it.
-2. **Use `"json"` response format** - The `verbose_json` format is NOT supported by this model.
 
-### 1. Audio Quality
-### 2. Audio Quality
+1. **Use `response_format="diarized_json"`** - This is the ONLY way to get speaker diarization
+2. **Chunk audio into 5-minute segments** - More reliable than larger chunks, reduces 500 errors
+3. **Implement retry logic** - Azure OpenAI can experience intermittent 500 errors
+4. **Add delays between requests** - 10-15 second delays prevent rate limiting
+5. **Specify language** - Always include `language="en"` for better accuracy
+
+### 1. Audio Chunking Strategy
+
+For audio longer than 5 minutes, split into chunks:
+
+```python
+# Using ffmpeg to split into 5-minute (300 second) chunks
+import subprocess
+
+def split_audio(input_file, chunk_duration=300):
+    """Split audio into chunks of specified duration"""
+    subprocess.run([
+        'ffmpeg', '-i', input_file,
+        '-f', 'segment',
+        '-segment_time', str(chunk_duration),
+        '-c', 'copy',
+        f'{input_file}_chunk%02d.mp3'
+    ])
+```
+
+**Why 5 minutes?**
+- API limit: 25 minutes (1500 seconds) maximum
+- Reliability: Shorter chunks have lower failure rates
+- Error recovery: Easier to retry individual failed chunks
+
+### 2. Retry Logic Implementation
+
+```python
+MAX_RETRIES = 3
+RETRY_DELAY = 30  # seconds
+
+def transcribe_with_retry(audio_file, attempt=1):
+    try:
+        response = requests.post(url, headers=headers, files=files, data=data, timeout=300)
+        if response.status_code == 500 and attempt < MAX_RETRIES:
+            print(f"⚠ Server error (attempt {attempt}/{MAX_RETRIES}), retrying in {RETRY_DELAY}s...")
+            time.sleep(RETRY_DELAY)
+            return transcribe_with_retry(audio_file, attempt + 1)
+        return response
+    except Exception as e:
+        if attempt < MAX_RETRIES:
+            time.sleep(RETRY_DELAY)
+            return transcribe_with_retry(audio_file, attempt + 1)
+        raise
+```
+
+### 3. Request Parameters
+
+**Working configuration:**
+```python
+data = {
+    'model': 'gpt-4o-transcribe-diarize',  # Exact model name
+    'response_format': 'diarized_json',     # Required for diarization
+    'chunking_strategy': 'auto',            # Auto voice detection
+    'language': 'en',                       # Specify language
+    'temperature': '0',                     # Deterministic output
+    'timestamp_granularities': 'segment'    # Get timing info
+}
+```
+
+### 4. Regional Considerations
+
+**Observed stability differences:**
+- **East US 2**: More stable, occasional retries succeed
+- **Sweden Central**: Frequent 500 errors even with increased TPM quotas
+
+**Recommendation:** Deploy to East US 2 for production workloads involving legal depositions.
+
+### 5. Audio Quality
 - Use high-quality recordings (minimum 16kHz sampling rate)
-- WAV, MP3, FLAC formats supported
+- MP3, WAV, FLAC formats supported
 - Minimize background noise
+- Ensure clear speaker separation
 
-### 3. Language Specification
-### 3. Language Specification
-Always specify the language for:
-- Better accuracy
-- Lower latency
-```python
-language="en"  # English
-```
+### 6. Processing Time Estimates
 
-### 4. Prompt Engineering
-> **Important**: The `prompt` parameter is **NOT supported** by `gpt-4o-transcribe-diarize`. The diarization model automatically ignores prompts. Do not include prompt parameters in your requests to this model.
+Based on production testing with legal depositions:
+- **Processing rate**: ~75-85 seconds per 5-minute chunk
+- **Token usage**: ~13,000 tokens per 5-minute chunk
+- **Segments**: ~100-120 segments per 5-minute chunk
 
-For non-diarization models, provide context for better transcription:
-```python
-prompt="Legal deposition with attorney and witness. Expect legal terminology, medical terms, and technical language."
-```
-
-### 5. Temperature Setting
-- Use `0.0` (default) for deterministic, focused transcription
-- Increase slightly (0.1-0.2) if model seems too conservative
-
-### 6. Chunking Strategy
-**REQUIRED parameter** - Use simple string format:
-```python
-chunking_strategy="auto"  # Server-managed VAD (recommended)
-```
-
-> **Note**: While the API documentation describes detailed VAD parameters (`threshold`, `silence_duration_ms`, `prefix_padding_ms`), the current implementation only accepts the string value `"auto"`. Custom VAD parameters are managed server-side and cannot be configured directly in the request.
-
-### 7. Timestamp Granularities
-### 7. Timestamp Granularities
-Request both for detailed analysis:
-```python
-timestamp_granularities=["word", "segment"]
-```
-
-### 8. Log Probabilities
-Enable for quality assessment:
-```python
-include=["logprobs"],
-response_format={"type": "json"}
-```
+**Example: 30-minute deposition**
+- 6 chunks × 80 seconds = ~8 minutes processing time
+- ~78,000 tokens total
+- ~630 speaker segments
 
 ## Supported Audio Formats
 - WAV
@@ -291,12 +350,36 @@ response_format={"type": "json"}
 - WebM
 - OGG
 
-## Limitations
-- **Maximum audio duration: 1500 seconds (25 minutes)** per transcription request
+## Production Experience & Limitations
+
+### Successfully Tested
+✅ **Rod Peters Deposition** (30 minutes)
+- 6 chunks processed successfully
+- 630 segments with 5 speakers identified
+- 76,988 tokens
+- Processing time: ~7.6 minutes
+- **100% success rate**
+
+✅ **Teresa Peters Deposition** (25 minutes)  
+- 4 of 5 chunks processed (80% complete)
+- 402 segments with multiple speakers
+- 50,310 tokens
+- 1 chunk experienced persistent 500 errors
+
+### Known Limitations
+- **Maximum audio duration: 1500 seconds (25 minutes)** per API request
 - Maximum file size: 25 MB
-- Real-time processing depends on audio length
-- Diarization accuracy varies with audio quality and speaker overlap
-- For longer audio files, implement chunking to process in 25-minute segments
+- **Intermittent 500 errors**: Specific chunks can fail repeatedly even with retry logic
+- **Regional variability**: Some Azure regions more stable than others
+- Diarization accuracy depends on audio quality and speaker overlap
+- No control over speaker label assignment (alphabetical: A, B, C, etc.)
+
+### Workarounds for 500 Errors
+1. Reduce chunk size (5 minutes works better than 10 minutes)
+2. Implement aggressive retry logic (5-10 attempts with 45-60 second delays)
+3. Try different Azure regions
+4. Process failed chunks separately
+5. Accept partial results when necessary (e.g., 4/5 chunks = 80% coverage)
 
 ## API Versions and Endpoints
 
@@ -326,13 +409,38 @@ For models deployed to Azure AI Foundry resources (endpoints like `*.services.ai
 
 ## Authentication Options
 
-### API Key (Simplest)
+### REST API with Requests (Recommended for Production)
+```python
+import requests
+
+url = f"{AZURE_OPENAI_ENDPOINT}/openai/deployments/{MODEL_DEPLOYMENT_NAME}/audio/transcriptions?api-version={API_VERSION}"
+
+headers = {
+    "api-key": AZURE_OPENAI_API_KEY
+}
+
+with open(audio_file, "rb") as f:
+    files = {"file": (audio_file.name, f, "audio/mpeg")}
+    data = {
+        "model": "gpt-4o-transcribe-diarize",
+        "response_format": "diarized_json",
+        "chunking_strategy": "auto",
+        "language": "en",
+        "temperature": "0",
+        "timestamp_granularities": "segment"
+    }
+    
+    response = requests.post(url, headers=headers, files=files, data=data, timeout=300)
+    result = response.json()
+```
+
+### API Key with OpenAI SDK (Alternative)
 ```python
 from openai import AzureOpenAI
 
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version="2025-03-01-preview",
+    api_version="2025-03-01-preview",
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
 )
 ```
@@ -354,10 +462,31 @@ client = AzureOpenAI(
 )
 ```
 
+## Key Findings & Documentation Gaps
+
+### Critical Undocumented Feature
+The `diarized_json` response format is **not documented** in official Azure OpenAI documentation but is **essential** for speaker diarization. This was discovered through:
+1. GitHub issue #43964 raised by this repository author
+2. Response from Azure support engineer (@AndreeaEpure) confirming the undocumented parameter
+3. Production testing validating the solution
+
+### Documentation Request Filed
+A comprehensive documentation request has been submitted to Azure (see `GITHUB_RESPONSE.md`) requesting:
+- Official documentation of `diarized_json` format
+- Clear examples in quickstart guides
+- Updated API reference with speaker diarization examples
+- Best practices for legal/professional use cases
+
+### Files in This Repository
+- **SOLUTION_FOUND.md**: Detailed explanation of the `diarized_json` discovery
+- **GITHUB_RESPONSE.md**: Full documentation request for Azure team
+- **Production scripts**: Working examples of legal deposition processing
+
 ## Resources
 - [Azure OpenAI Documentation](https://learn.microsoft.com/azure/ai-foundry/openai/)
 - [API Reference](https://learn.microsoft.com/azure/ai-foundry/openai/reference-preview-latest)
 - [Audio Transcription Quickstart](https://learn.microsoft.com/azure/ai-foundry/openai/whisper-quickstart)
+- [GitHub Issue #43964](https://github.com/Azure/azure-rest-api-specs/issues/43964) - Original issue that led to discovery
 
 ## Contributing
 
