@@ -26,6 +26,7 @@ CHUNK_DURATION_SECONDS = 1400  # 23.3 minutes (leave buffer for processing)
 # Retry configuration
 MAX_RETRIES = 3
 RETRY_DELAY_SECONDS = 10
+REQUEST_TIMEOUT_SECONDS = 600  # 10 minutes timeout for API calls
 
 
 def get_audio_duration(audio_file: str) -> float:
@@ -154,8 +155,9 @@ def transcribe_audio_chunk(
                     'temperature': str(temperature)
                 }
                 
-                # Make request
-                response = requests.post(url, headers=headers, files=files, data=data)
+                # Make request with timeout
+                print(f"    (This may take several minutes for long audio...)")
+                response = requests.post(url, headers=headers, files=files, data=data, timeout=REQUEST_TIMEOUT_SECONDS)
                 
                 # Check for errors
                 if response.status_code == 500:
