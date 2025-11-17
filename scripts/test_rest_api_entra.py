@@ -84,7 +84,7 @@ def build_multipart_data(
     if language:
         data['language'] = (None, language)
     
-    if response_format in ['json', 'text', 'srt', 'vtt']:
+    if response_format in ['json', 'verbose_json', 'text', 'srt', 'vtt', 'diarized_json']:
         data['response_format'] = (None, response_format)
     
     if timestamp_granularities:
@@ -191,8 +191,15 @@ def transcribe_audio_rest(
         print(f"✓ Transcription completed in {duration:.2f} seconds")
         print(f"✓ Status Code: {response.status_code}")
         
+        # Debug: Print raw response
+        print(f"\n{'='*60}")
+        print("RAW API RESPONSE:")
+        print(f"{'='*60}")
+        print(json.dumps(response.json() if response.headers.get('content-type', '').startswith('application/json') else {"text": response.text}, indent=2))
+        print(f"{'='*60}\n")
+        
         # Parse response based on format
-        if response_format in ['json', 'verbose_json']:
+        if response_format in ['json', 'verbose_json', 'diarized_json']:
             result = response.json()
         else:
             result = {"text": response.text}
@@ -336,8 +343,8 @@ def main():
         "--response-format",
         type=str,
         default="json",
-        choices=["json", "text", "srt", "vtt"],
-        help="Response format"
+        choices=["json", "verbose_json", "text", "srt", "vtt", "diarized_json"],
+        help="Response format (use 'diarized_json' for speaker diarization)"
     )
     parser.add_argument(
         "--word-timestamps",

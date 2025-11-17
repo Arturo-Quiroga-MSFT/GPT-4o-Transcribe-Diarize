@@ -97,7 +97,7 @@ def build_multipart_data(
         data['prompt'] = (None, prompt)
     
     # Response format handling
-    if response_format in ['json', 'verbose_json', 'text', 'srt', 'vtt']:
+    if response_format in ['json', 'verbose_json', 'text', 'srt', 'vtt', 'diarized_json']:
         data['response_format'] = (None, response_format)
     
     if timestamp_granularities:
@@ -225,7 +225,7 @@ def transcribe_audio_rest(
         print(f"{'='*60}\n")
         
         # Parse response based on format
-        if response_format in ['json', 'verbose_json']:
+        if response_format in ['json', 'verbose_json', 'diarized_json']:
             result = response.json()
         else:
             result = {"text": response.text}
@@ -373,8 +373,8 @@ def main():
         "--response-format",
         type=str,
         default="json",
-        choices=["json", "verbose_json", "text", "srt", "vtt"],
-        help="Response format"
+        choices=["json", "verbose_json", "text", "srt", "vtt", "diarized_json"],
+        help="Response format (use 'diarized_json' for speaker diarization)"
     )
     parser.add_argument(
         "--word-timestamps",
