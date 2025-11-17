@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick processing script with smaller chunks (10 minutes) for faster processing
+Process deposition audio files using East US 2 deployment with 5-minute chunks
 """
 
 import os
@@ -11,10 +11,10 @@ import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
-from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load East US 2 environment variables
+load_dotenv('.env.eastus2')
 
 CHUNK_DURATION = 300  # 5 minutes
 MAX_RETRIES = 3
@@ -30,7 +30,7 @@ def split_audio(audio_file, chunk_dur=CHUNK_DURATION):
     if duration <= chunk_dur:
         return [audio_file]
     
-    output_dir = Path(audio_file).parent / "chunks_5min"
+    output_dir = Path(audio_file).parent / "chunks_5min_eastus2"
     output_dir.mkdir(exist_ok=True)
     base = Path(audio_file).stem
     num = int((duration / chunk_dur) + 1)
@@ -46,13 +46,13 @@ def split_audio(audio_file, chunk_dur=CHUNK_DURATION):
     return chunks
 
 def transcribe(audio_file):
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-04-01-preview")
-    url = f"{endpoint}openai/deployments/gpt-4o-transcribe-diarize/audio/transcriptions?api-version={api_version}"
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT_EASTUS2")
+    api_key = os.getenv("AZURE_OPENAI_API_KEY_EASTUS2")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION_EASTUS2")
+    model = os.getenv("MODEL_DEPLOYMENT_NAME_EASTUS2")
     
-    credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
-    headers = {"Authorization": f"Bearer {token.token}"}
+    url = f"{endpoint}openai/deployments/{model}/audio/transcriptions?api-version={api_version}"
+    headers = {"api-key": api_key}
     
     print(f"  Transcribing {Path(audio_file).name}...")
     
@@ -62,7 +62,13 @@ def transcribe(audio_file):
             
             with open(audio_file, 'rb') as f:
                 files = {'file': (Path(audio_file).name, f, 'audio/mpeg')}
-                data = {'model': 'gpt-4o-transcribe-diarize', 'response_format': 'diarized_json', 'chunking_strategy': 'auto', 'language': 'en', 'temperature': '0'}
+                data = {
+                    'model': model,
+                    'response_format': 'diarized_json',
+                    'chunking_strategy': 'auto',
+                    'language': 'en',
+                    'temperature': '0'
+                }
                 response = requests.post(url, headers=headers, files=files, data=data, timeout=300)
             
             if response.status_code == 500:
@@ -98,7 +104,6 @@ def transcribe(audio_file):
 
 def main():
     dep_dir = Path("depositions")
-    # Find all mp3 files but exclude chunk files
     all_audio_files = list(dep_dir.rglob("*.mp3"))
     
     # Filter out files in 'chunks' directories and files with '_chunk' in name
@@ -107,7 +112,7 @@ def main():
         if 'chunk' not in str(f).lower()
     ]
     
-    print(f"\nProcessing {len(audio_files)} files with 5-minute chunks\n")
+    print(f"\nProcessing {len(audio_files)} files with 5-minute chunks (East US 2)\n")
     
     for audio_file in audio_files:
         print(f"\n{audio_file.name}")
@@ -129,7 +134,7 @@ def main():
         
         if all_results:
             # Save merged result
-            output_dir = Path("output/depositions_5min")
+            output_dir = Path("output/depositions_eastus2")
             output_dir.mkdir(parents=True, exist_ok=True)
             output_file = output_dir / f"{Path(audio_file).stem}.json"
             

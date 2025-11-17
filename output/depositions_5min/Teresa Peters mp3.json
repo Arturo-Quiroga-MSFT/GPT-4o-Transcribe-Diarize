@@ -1,0 +1,1970 @@
+{
+  "chunks": [
+    {
+      "text": "Today is Monday, December 13, 2021. We will go on the record at 9.25 a .m. Will the court reporter please swear the witness? Raise your right hand, please. Do you swear that the testimony you're about to give shall be the truth, the whole truth, and nothing but the truth, so help you God? Yes.\nCan you please state your name for the record? Teresa Marie Peters. Ms. Peters, good morning. My name is Ben Fadler. You and I have met a few times before, correct? Yes, we have. You understand that we're here in Hayward, Wisconsin to take your deposition to show to a jury at trial, Yes. correct? And just like I asked your husband, Ms. Peters, a moment ago, the two of you cannot be available for trial in January. And so you've agreed to give your testimony through video today so the jury can hear what you have to say. Correct.\nAnd you understand, Ms. Peters, that you are under oath just like you would be if you gave your testimony in person at trial, Yes. correct? Pardon me. I think, and I won't play this part at trial, but we can put it on the record. Do your very best, and I...\nI was scolded in the break for talking a little too fast. No, I wasn't scolded. Do your very best to let me finish my question and then answer because Okay. if we talk over each other, it's hard for her to take down. And from time to time, Mr. Steffes may make an objection, and if he does, let him make his objection and then answer. It'll just make it easier. Okay. Ms. Peters, I am not going to cover all the things I did with your husband a moment ago because the jury will have seen his testimony and heard from him, but I do want to make sure the jury understands your testimony a couple things, okay?\nMm-hmm. First, you and your husband are the owners of Midwest Roasters, is that true? Correct. And your primary role in the business over the years has been in administration and sales, is that right? Correct. And I ask your husband this and he said you would know better, although he thought I was right, and that is Nick Mansell would have worked for Midwest Roasters.\nBased upon some documents you guys were produced from August 26th of 08 to September 29th of 15. Is that true? I don't remember exact dates, but it could be. Okay. And you're fair to say that you were the person who did a huge majority of the paperwork that goes along with running a business, correct? Yes. And you would have been the person who did the ordering of things that were needed to roast and flavor coffee, true? Not always me. Okay, Nope. but that was your job as Yes. well. Okay.\nAnd as the person who was in charge of ordering things or who was often involved in ordering things at the time Nick Moncel worked for Midwest Roasters, would you agree that Flavor Development Corporation was the only corporation supplying artificial flavors to Midwest Roasters? Correct. There was no other chemical supplier providing flavorings to your business from 2008 to 2015 other than Flavor Development. Is that right? Correct. Okay.\nNow I want to show you what's been marked in this case as Exhibit 7, Ms. Peters, and it's going to come up on the screen here in front of you. You've seen this document before, have you not? Yes, correct. This is a document from the Labor Development Corporation. Do you see that? And it is dated June 16, 2017. True? Yes. And that would be several years after Nick Montsell worked for your company. True? Yes.\nAnd what it says is, we certify that the products manufactured by Flavor Development Corporation do not contain diacetyl. Did I read that correctly? Yes. And so as of June of 2017, this is what flavor development's telling you, correct? Correct. And it's actually signed down here. It says flavor development, but that's a typo. It should be Flavor Development Corporation, and it's signed by Mr. Staffieri, the president. Do you see that? Yes.\nAnd in fact, if you look down here at the bottom, it's got what's called a bait stamp on it, which is MW0004. You understand that this is actually a document that your company produced to us in response to a subpoena, is that true? Correct. Okay.\nAnd here's my question about this, and this is an important question for the jury in our case. To your personal knowledge, Ms. Peters, prior to receiving that document from Flavor Development Corporation in June of 2017, had you ever been provided any other documents or communication of any kind from Flavor Development that referred to Diasseville in any way?\nNot that I am aware of. In fact, the first time you learned or heard about this chemical called diacetyl would have been when you received Exhibit 7 here, this piece of paper from Flavor Development in June of 2017. Is that true? Correct. And that's two years after Nick Monzel retired in 2015, right?",
+      "segments": [
+        {
+          "type": "transcript.text.segment",
+          "text": " Today is Monday,",
+          "speaker": "A",
+          "start": 6.036,
+          "end": 6.835999999999999,
+          "id": "seg_0"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " December 13,",
+          "speaker": "A",
+          "start": 6.885999999999999,
+          "end": 7.635999999999999,
+          "id": "seg_1"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " 2021.",
+          "speaker": "A",
+          "start": 7.935999999999999,
+          "end": 8.536,
+          "id": "seg_2"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " We will go on the record at 9.25 a.m.",
+          "speaker": "A",
+          "start": 8.985999999999999,
+          "end": 11.585999999999999,
+          "id": "seg_3"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Will the court reporter please swear the witness?",
+          "speaker": "A",
+          "start": 11.735999999999999,
+          "end": 13.835999999999999,
+          "id": "seg_4"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Raise your right hand, please.",
+          "speaker": "B",
+          "start": 15.186,
+          "end": 16.286,
+          "id": "seg_5"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Do you swear that the testimony you're about to give shall be the truth, the whole truth, and nothing but the truth, so help you God?",
+          "speaker": "B",
+          "start": 16.636,
+          "end": 21.235999999999997,
+          "id": "seg_6"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "C",
+          "start": 21.235999999999997,
+          "end": 21.686,
+          "id": "seg_7"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Can you please state your name for the record?",
+          "speaker": "A",
+          "start": 23.188,
+          "end": 24.837999999999997,
+          "id": "seg_8"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Teresa Marie Peters.",
+          "speaker": "D",
+          "start": 24.988,
+          "end": 26.287999999999997,
+          "id": "seg_9"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms. Peters, good morning. My name is Ben Fadler. You and I have met a few times before, correct?",
+          "speaker": "A",
+          "start": 26.488,
+          "end": 31.288,
+          "id": "seg_10"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes, we have.",
+          "speaker": "D",
+          "start": 31.438000000000002,
+          "end": 32.138,
+          "id": "seg_11"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " You understand that we're here in Hayward, Wisconsin to take your deposition to show to a jury at trial,",
+          "speaker": "A",
+          "start": 32.338,
+          "end": 36.888,
+          "id": "seg_12"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 36.888,
+          "end": 36.988,
+          "id": "seg_13"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " correct?",
+          "speaker": "A",
+          "start": 36.988,
+          "end": 37.188,
+          "id": "seg_14"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": "",
+          "speaker": "D",
+          "start": 37.188,
+          "end": 37.238,
+          "id": "seg_15"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And just like I asked your husband,",
+          "speaker": "A",
+          "start": 38.538,
+          "end": 40.488,
+          "id": "seg_16"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms. Peters,",
+          "speaker": "A",
+          "start": 40.538,
+          "end": 40.988,
+          "id": "seg_17"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " a moment ago,",
+          "speaker": "A",
+          "start": 41.088,
+          "end": 41.788,
+          "id": "seg_18"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " the two of you cannot be available for trial in January. And so you've agreed to give your testimony through video today so the jury can hear what you have to say.",
+          "speaker": "A",
+          "start": 42.188,
+          "end": 49.488,
+          "id": "seg_19"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 49.488,
+          "end": 49.738,
+          "id": "seg_20"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And you understand, Ms. Peters,",
+          "speaker": "A",
+          "start": 50.996,
+          "end": 52.296,
+          "id": "seg_21"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " that you are under oath just like you would be if you gave your testimony in person at trial,",
+          "speaker": "A",
+          "start": 52.346000000000004,
+          "end": 55.996,
+          "id": "seg_22"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 55.996,
+          "end": 56.096000000000004,
+          "id": "seg_23"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " correct?",
+          "speaker": "A",
+          "start": 56.096000000000004,
+          "end": 56.246,
+          "id": "seg_24"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": "",
+          "speaker": "D",
+          "start": 56.246,
+          "end": 56.346000000000004,
+          "id": "seg_25"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Pardon me.",
+          "speaker": "D",
+          "start": 60.196,
+          "end": 60.796,
+          "id": "seg_26"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I think, and I won't play this part at trial, but we can put it on the record.",
+          "speaker": "A",
+          "start": 62.746,
+          "end": 67.04599999999999,
+          "id": "seg_27"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Do your very best, and I...",
+          "speaker": "A",
+          "start": 67.696,
+          "end": 69.496,
+          "id": "seg_28"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I was scolded in the break for talking a little too fast.",
+          "speaker": "A",
+          "start": 70.228,
+          "end": 72.82799999999999,
+          "id": "seg_29"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " No, I wasn't scolded. Do your very best to let me finish my question and then answer because",
+          "speaker": "A",
+          "start": 73.228,
+          "end": 77.378,
+          "id": "seg_30"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "D",
+          "start": 77.378,
+          "end": 77.52799999999999,
+          "id": "seg_31"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " if we talk over each other, it's hard for her to take down. And from time to time, Mr.",
+          "speaker": "A",
+          "start": 77.52799999999999,
+          "end": 81.728,
+          "id": "seg_32"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Steffes may make an objection,",
+          "speaker": "A",
+          "start": 81.77799999999999,
+          "end": 83.128,
+          "id": "seg_33"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " and if he does, let him make his objection and then answer. It'll just make it easier.",
+          "speaker": "A",
+          "start": 83.228,
+          "end": 86.37799999999999,
+          "id": "seg_34"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "D",
+          "start": 86.478,
+          "end": 86.928,
+          "id": "seg_35"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms.",
+          "speaker": "A",
+          "start": 88.52799999999999,
+          "end": 88.77799999999999,
+          "id": "seg_36"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Peters,",
+          "speaker": "A",
+          "start": 88.928,
+          "end": 89.178,
+          "id": "seg_37"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I am not going to cover all the things I did with your husband a moment ago because the jury will have seen his testimony and heard from him,",
+          "speaker": "A",
+          "start": 89.32799999999999,
+          "end": 95.37799999999999,
+          "id": "seg_38"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " but I do want to make sure the jury understands your testimony a couple things,",
+          "speaker": "A",
+          "start": 95.428,
+          "end": 98.87799999999999,
+          "id": "seg_39"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " okay?",
+          "speaker": "A",
+          "start": 99.02799999999999,
+          "end": 99.178,
+          "id": "seg_40"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Mm-hmm.",
+          "speaker": "D",
+          "start": 99.86,
+          "end": 100.26,
+          "id": "seg_41"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " First,",
+          "speaker": "A",
+          "start": 100.46,
+          "end": 101.06,
+          "id": "seg_42"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " you and your husband are the owners of Midwest Roasters,",
+          "speaker": "A",
+          "start": 101.16,
+          "end": 103.41,
+          "id": "seg_43"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " is that true?",
+          "speaker": "A",
+          "start": 103.46,
+          "end": 103.91,
+          "id": "seg_44"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 104.01,
+          "end": 104.46,
+          "id": "seg_45"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And your primary role in the business over the years has been in administration and sales,",
+          "speaker": "A",
+          "start": 105.61,
+          "end": 112.06,
+          "id": "seg_46"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " is that right?",
+          "speaker": "A",
+          "start": 112.16,
+          "end": 112.61,
+          "id": "seg_47"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 112.61,
+          "end": 112.96,
+          "id": "seg_48"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And I ask your husband this and he said you would know better, although he thought I was right,",
+          "speaker": "A",
+          "start": 113.31,
+          "end": 117.06,
+          "id": "seg_49"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " and that is Nick Mansell would have worked for Midwest Roasters.",
+          "speaker": "A",
+          "start": 117.16,
+          "end": 122.66,
+          "id": "seg_50"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Based upon some documents you guys were produced from August 26th of 08 to September 29th of 15.",
+          "speaker": "A",
+          "start": 123.476,
+          "end": 129.876,
+          "id": "seg_51"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Is that true?",
+          "speaker": "A",
+          "start": 130.026,
+          "end": 130.426,
+          "id": "seg_52"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I don't remember exact dates, but it could be.",
+          "speaker": "D",
+          "start": 131.176,
+          "end": 133.576,
+          "id": "seg_53"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "A",
+          "start": 133.576,
+          "end": 133.976,
+          "id": "seg_54"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And you're fair to say that you were the person who did a huge majority of the paperwork that goes along with running a business,",
+          "speaker": "A",
+          "start": 135.726,
+          "end": 141.026,
+          "id": "seg_55"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " correct?",
+          "speaker": "A",
+          "start": 141.126,
+          "end": 141.326,
+          "id": "seg_56"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 141.726,
+          "end": 142.226,
+          "id": "seg_57"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And you would have been the person who did the ordering of things that were needed to roast and flavor coffee,",
+          "speaker": "A",
+          "start": 142.776,
+          "end": 147.476,
+          "id": "seg_58"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " true?",
+          "speaker": "A",
+          "start": 147.576,
+          "end": 147.726,
+          "id": "seg_59"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Not always me.",
+          "speaker": "D",
+          "start": 148.026,
+          "end": 149.526,
+          "id": "seg_60"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay,",
+          "speaker": "A",
+          "start": 149.826,
+          "end": 150.226,
+          "id": "seg_61"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Nope.",
+          "speaker": "D",
+          "start": 150.226,
+          "end": 150.326,
+          "id": "seg_62"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " but that was your job as",
+          "speaker": "A",
+          "start": 150.326,
+          "end": 151.526,
+          "id": "seg_63"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 151.526,
+          "end": 151.626,
+          "id": "seg_64"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " well.",
+          "speaker": "A",
+          "start": 151.626,
+          "end": 151.776,
+          "id": "seg_65"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": "",
+          "speaker": "D",
+          "start": 151.776,
+          "end": 151.876,
+          "id": "seg_66"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "A",
+          "start": 151.876,
+          "end": 152.42600000000002,
+          "id": "seg_67"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And as the person who was in charge of ordering things or who was often involved in ordering things at the time Nick Moncel worked for Midwest Roasters,",
+          "speaker": "A",
+          "start": 153.14,
+          "end": 160.98999999999998,
+          "id": "seg_68"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " would you agree that Flavor Development Corporation was the only corporation supplying artificial flavors to Midwest Roasters?",
+          "speaker": "A",
+          "start": 161.14,
+          "end": 168.14,
+          "id": "seg_69"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 168.14,
+          "end": 168.54,
+          "id": "seg_70"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " There was no other chemical supplier providing flavorings to your business from 2008 to 2015 other than Flavor Development.",
+          "speaker": "A",
+          "start": 169.33999999999997,
+          "end": 176.73999999999998,
+          "id": "seg_71"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Is that right?",
+          "speaker": "A",
+          "start": 176.89,
+          "end": 177.33999999999997,
+          "id": "seg_72"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 177.33999999999997,
+          "end": 177.73999999999998,
+          "id": "seg_73"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "A",
+          "start": 177.73999999999998,
+          "end": 178.29,
+          "id": "seg_74"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Now I want to show you what's been marked in this case as Exhibit 7,",
+          "speaker": "A",
+          "start": 179.22,
+          "end": 182.37,
+          "id": "seg_75"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms. Peters,",
+          "speaker": "A",
+          "start": 182.47,
+          "end": 182.92,
+          "id": "seg_76"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " and it's going to come up on the screen here in front of you.",
+          "speaker": "A",
+          "start": 183.07,
+          "end": 186.52,
+          "id": "seg_77"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " You've seen this document before,",
+          "speaker": "A",
+          "start": 188.37,
+          "end": 190.37,
+          "id": "seg_78"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " have you not?",
+          "speaker": "A",
+          "start": 190.42,
+          "end": 190.82,
+          "id": "seg_79"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes, correct.",
+          "speaker": "D",
+          "start": 190.82,
+          "end": 191.57,
+          "id": "seg_80"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " This is a document from the Labor Development Corporation.",
+          "speaker": "A",
+          "start": 191.57,
+          "end": 196.67000000000002,
+          "id": "seg_81"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Do you see that?",
+          "speaker": "A",
+          "start": 196.87,
+          "end": 197.32,
+          "id": "seg_82"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And it is dated June 16,",
+          "speaker": "A",
+          "start": 198.47,
+          "end": 201.32,
+          "id": "seg_83"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " 2017.",
+          "speaker": "A",
+          "start": 201.52,
+          "end": 201.97,
+          "id": "seg_84"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " True?",
+          "speaker": "A",
+          "start": 202.22,
+          "end": 202.52,
+          "id": "seg_85"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 202.92,
+          "end": 203.32,
+          "id": "seg_86"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And that would be several years after Nick Montsell worked for your company.",
+          "speaker": "A",
+          "start": 203.32,
+          "end": 207.51999999999998,
+          "id": "seg_87"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " True?",
+          "speaker": "A",
+          "start": 207.57,
+          "end": 207.72,
+          "id": "seg_88"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 207.82,
+          "end": 208.26999999999998,
+          "id": "seg_89"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And what it says is,",
+          "speaker": "A",
+          "start": 210.068,
+          "end": 211.668,
+          "id": "seg_90"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " we certify that the products manufactured by Flavor Development Corporation do not contain diacetyl. Did I read that correctly?",
+          "speaker": "A",
+          "start": 211.71800000000002,
+          "end": 218.61800000000002,
+          "id": "seg_91"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 218.818,
+          "end": 219.318,
+          "id": "seg_92"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And so as of June of 2017,",
+          "speaker": "A",
+          "start": 219.46800000000002,
+          "end": 221.86800000000002,
+          "id": "seg_93"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " this is what flavor development's telling you, correct?",
+          "speaker": "A",
+          "start": 222.168,
+          "end": 224.61800000000002,
+          "id": "seg_94"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 224.768,
+          "end": 225.46800000000002,
+          "id": "seg_95"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And it's actually signed down here.",
+          "speaker": "A",
+          "start": 225.568,
+          "end": 227.36800000000002,
+          "id": "seg_96"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " It says flavor development,",
+          "speaker": "A",
+          "start": 227.86800000000002,
+          "end": 229.86800000000002,
+          "id": "seg_97"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " but that's a typo. It should be Flavor Development Corporation,",
+          "speaker": "A",
+          "start": 229.96800000000002,
+          "end": 232.46800000000002,
+          "id": "seg_98"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " and it's signed by Mr.",
+          "speaker": "A",
+          "start": 232.76800000000003,
+          "end": 233.96800000000002,
+          "id": "seg_99"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Staffieri,",
+          "speaker": "A",
+          "start": 234.068,
+          "end": 234.568,
+          "id": "seg_100"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " the president.",
+          "speaker": "A",
+          "start": 234.61800000000002,
+          "end": 235.11800000000002,
+          "id": "seg_101"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Do you see that?",
+          "speaker": "A",
+          "start": 235.21800000000002,
+          "end": 235.568,
+          "id": "seg_102"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "D",
+          "start": 235.568,
+          "end": 236.068,
+          "id": "seg_103"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And in fact, if you look down here at the bottom, it's got what's called a bait stamp on it, which is MW0004. You understand that this is actually a document that your company produced to us in response to a subpoena, is that true?",
+          "speaker": "A",
+          "start": 243.156,
+          "end": 256.25600000000003,
+          "id": "seg_104"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 256.25600000000003,
+          "end": 256.656,
+          "id": "seg_105"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "A",
+          "start": 256.806,
+          "end": 257.056,
+          "id": "seg_106"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And here's my question about this, and this is an important question for the jury in our case.",
+          "speaker": "A",
+          "start": 261.588,
+          "end": 265.238,
+          "id": "seg_107"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " To your personal knowledge, Ms. Peters,",
+          "speaker": "A",
+          "start": 265.43800000000005,
+          "end": 267.338,
+          "id": "seg_108"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " prior to receiving that document from Flavor Development Corporation in June of 2017,",
+          "speaker": "A",
+          "start": 267.538,
+          "end": 272.488,
+          "id": "seg_109"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " had you ever been provided any other documents or communication of any kind from Flavor Development that referred to Diasseville in any way?",
+          "speaker": "A",
+          "start": 272.988,
+          "end": 281.238,
+          "id": "seg_110"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Not that I am aware of.",
+          "speaker": "D",
+          "start": 281.748,
+          "end": 283.048,
+          "id": "seg_111"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " In fact, the first time you learned or heard about this chemical called diacetyl would have been when you received Exhibit 7 here,",
+          "speaker": "A",
+          "start": 283.098,
+          "end": 289.198,
+          "id": "seg_112"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " this piece of paper from Flavor Development in June of 2017.",
+          "speaker": "A",
+          "start": 289.298,
+          "end": 292.598,
+          "id": "seg_113"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Is that true?",
+          "speaker": "A",
+          "start": 292.748,
+          "end": 293.298,
+          "id": "seg_114"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "D",
+          "start": 293.998,
+          "end": 294.498,
+          "id": "seg_115"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And that's two years after Nick Monzel retired in 2015,",
+          "speaker": "A",
+          "start": 295.048,
+          "end": 298.498,
+          "id": "seg_116"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " right?",
+          "speaker": "A",
+          "start": 298.748,
+          "end": 298.89799999999997,
+          "id": "seg_117"
+        }
+      ],
+      "usage": {
+        "type": "tokens",
+        "total_tokens": 13663,
+        "input_tokens": 4853,
+        "input_token_details": {
+          "text_tokens": 393,
+          "audio_tokens": 4460
+        },
+        "output_tokens": 8810
+      }
+    },
+    {
+      "text": "Correct. To your knowledge, in writing, in phone calls, or in documents contained in packaging with shipments, did Flavor Development Corporation ever tell Midwest Roasters prior to June of 2017 that there was diacetyl in any of their products? Not that I'm aware of. And I don't want to go through the documents that we covered with your husband, Ms. Peters, because the jury has seen those already, but I want to make sure we're clear on this issue. Did Flavor Development ever provide...\nTo your knowledge, Midwest Roasters with any warnings that referenced or discussed the dangers of diacetyl. Not that I'm aware of. And I asked your husband the same thing, but if you opened a box of flavoring from Midwest Roasters from 2008 to 2000, I'm sorry, strike that. Let me start again.\nI asked your husband this as well, but if you had opened a box of flavoring from Flavor Development from 2008 to 2012, and you did open boxes from time to time, Correct. sir, if you did and it included a document or warning that said,\nA chemical that is in these flavorings can cause severe lung damage or a disease called bronchiolitis obliterans. You as an owner of Midwest Roasters would have immediately taken action to protect your employees, Definitely. correct? So it's not something that you could have read and just forgot about. That's something that would have stuck in your mind, true? Correct. And if Flavor Development Corporation had told you that people who handle diacetyl should wear respirators to protect themselves.\nIncluding your husband who did flavoring, you would have made sure that your employees and your husband had those to protect themselves, true? Definitely. Were you surprised when this lawsuit was filed and you started learning about diacetyl that you were never told about it? Completely surprised.\nJust as I told your husband, Ms. Peters, and I want you to understand, because there was never any warning provided you, Mr. Montel does not blame you or Midwest Roasters for his lung disease, okay? He understands that that's not your fault. Do you understand that? Objective form and relevance. Ms. Peters, had Flavor Development Corporation provided any warning or information to you from 2008 until 2012 regarding diacetyl in any amount?\nThat's something that you would have wanted to know, true? Correct. I don't have any further questions. Thank you, ma'am. We just take a five minute break. Sure. Thanks. Off the record. We're going off the record at 9:33 a.m.\nHello, Ms. Peters. My Hello. name is Brian Steffes. We've met before, haven't we? We have. And we met when we did that walk-through a couple years ago at Midwest Roasters. Correct. And since you took your deposition last year, you and I haven't spoke. Is that true? Correct. Okay. Did you also meet with Mr. Monsal's new attorney, Mr. Fadler, about a month ago? Object to the form of the question. Go ahead and answer.\nI can rephrase the question. Did you meet with Mr. Fadler uh about a month ago? Yes. Okay, and you understood Mr. Fadler to be Mr. Monticello's attorney? Yes. Okay, and how long was that meeting? I don't know. Minutes? Uh fifteen minutes? Okay. Twenty minutes? Were you with Mr. Peters when you met with him? Yes. Okay, he thought it was closer to an hour. Oh, maybe it was. It it all seemed like it went pretty quick. Okay, thanks.\nDid Mr. Fadler show you any documents at that time? I don't recall any documents. Okay. What did you basically discuss? Oh, discuss if we, pretty much the same questions he just.\nThey asked me about the chemical and if we knew anything about it prior. Okay. And you remember when we took your deposition about a year ago, Mm-hmm. we asked you a lot of questions about what was contained in the MSDS from Flavor Development. Mm Do you recall -hmm. that? Yes. You recall those questions, yes? Yes. Some of them. All right. And you would often open boxes from Flavor Development with the flavors, true? From time to time. And you would take the MSDSs that were in the boxes and you'd put them in a binder, is that true? Correct.\nBut you didn't have any specific recollection as to what was in those safety data sheets from 2008 to 2012, is that true? As far as I As what was contained in them, as far as warnings. You didn't have a specific recollection as to what was in those safety data sheets from 2008. don't recall right now. No. Right. And last year when you testified, you didn't have any specific recollection as to what was in Flavor Development safety data sheets from 2008 to 2012, correct? I don't recall. Right.\nSo like you want to recall what may have been in a safety data sheet for a chocolate flavor versus what may have been in a safety data sheet.",
+      "segments": [
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "A",
+          "start": 0.0,
+          "end": 0.34999999999999987,
+          "id": "seg_0"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " To your knowledge, in writing,",
+          "speaker": "B",
+          "start": 1.6499999999999997,
+          "end": 3.1499999999999995,
+          "id": "seg_1"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " in phone calls, or in documents contained in packaging with shipments, did Flavor Development Corporation ever tell Midwest Roasters prior to June of 2017 that there was diacetyl in any of their products?",
+          "speaker": "B",
+          "start": 3.5999999999999996,
+          "end": 13.700000000000001,
+          "id": "seg_2"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Not that I'm aware of.",
+          "speaker": "A",
+          "start": 13.9,
+          "end": 15.100000000000001,
+          "id": "seg_3"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And I don't want to go through the documents that we covered with your husband,",
+          "speaker": "B",
+          "start": 16.85,
+          "end": 19.700000000000003,
+          "id": "seg_4"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms.",
+          "speaker": "B",
+          "start": 19.800000000000004,
+          "end": 20.050000000000004,
+          "id": "seg_5"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Peters,",
+          "speaker": "B",
+          "start": 20.150000000000006,
+          "end": 20.350000000000005,
+          "id": "seg_6"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " because the jury has seen those already,",
+          "speaker": "B",
+          "start": 20.450000000000006,
+          "end": 21.750000000000007,
+          "id": "seg_7"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " but I want to make sure we're clear on this issue.",
+          "speaker": "B",
+          "start": 21.900000000000006,
+          "end": 23.450000000000006,
+          "id": "seg_8"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Did Flavor Development ever provide...",
+          "speaker": "B",
+          "start": 23.850000000000005,
+          "end": 26.200000000000006,
+          "id": "seg_9"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " To your knowledge,",
+          "speaker": "B",
+          "start": 26.932,
+          "end": 27.881999999999998,
+          "id": "seg_10"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Midwest Roasters with any warnings that referenced or discussed the dangers of diacetyl.",
+          "speaker": "B",
+          "start": 27.932,
+          "end": 32.532,
+          "id": "seg_11"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Not that I'm aware of.",
+          "speaker": "A",
+          "start": 32.782,
+          "end": 33.931999999999995,
+          "id": "seg_12"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And I asked your husband the same thing, but if you opened a box of flavoring from Midwest Roasters from 2008 to 2000,",
+          "speaker": "B",
+          "start": 34.382,
+          "end": 42.732,
+          "id": "seg_13"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I'm sorry, strike that.",
+          "speaker": "B",
+          "start": 42.932,
+          "end": 43.831999999999994,
+          "id": "seg_14"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Let me start again.",
+          "speaker": "B",
+          "start": 43.932,
+          "end": 44.581999999999994,
+          "id": "seg_15"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I asked your husband this as well, but if you had opened a box of flavoring from Flavor Development from 2008 to 2012,",
+          "speaker": "B",
+          "start": 46.612,
+          "end": 52.712,
+          "id": "seg_16"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " and you did open boxes from time to time,",
+          "speaker": "B",
+          "start": 52.862,
+          "end": 55.112,
+          "id": "seg_17"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "A",
+          "start": 55.112,
+          "end": 55.212,
+          "id": "seg_18"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " sir,",
+          "speaker": "B",
+          "start": 55.212,
+          "end": 55.362,
+          "id": "seg_19"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": "",
+          "speaker": "A",
+          "start": 55.362,
+          "end": 55.412000000000006,
+          "id": "seg_20"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " if you did and it included a document or warning that said,",
+          "speaker": "B",
+          "start": 55.412000000000006,
+          "end": 60.512,
+          "id": "seg_21"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " A chemical that is in these flavorings can cause severe lung damage or a disease called bronchiolitis obliterans. You as an owner of Midwest Roasters would have immediately taken action to protect your employees,",
+          "speaker": "B",
+          "start": 61.716,
+          "end": 72.016,
+          "id": "seg_22"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Definitely.",
+          "speaker": "A",
+          "start": 72.016,
+          "end": 72.166,
+          "id": "seg_23"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " correct?",
+          "speaker": "B",
+          "start": 72.166,
+          "end": 72.366,
+          "id": "seg_24"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": "",
+          "speaker": "A",
+          "start": 72.366,
+          "end": 72.666,
+          "id": "seg_25"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " So it's not something that you could have read and just forgot about.",
+          "speaker": "B",
+          "start": 72.96600000000001,
+          "end": 76.016,
+          "id": "seg_26"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " That's something that would have stuck in your mind, true?",
+          "speaker": "B",
+          "start": 76.066,
+          "end": 77.766,
+          "id": "seg_27"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "A",
+          "start": 77.766,
+          "end": 78.166,
+          "id": "seg_28"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And if Flavor Development Corporation had told you that people who handle diacetyl should wear respirators to protect themselves.",
+          "speaker": "B",
+          "start": 78.766,
+          "end": 86.166,
+          "id": "seg_29"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Including your husband who did flavoring, you would have made sure that your employees and your husband had those to protect themselves,",
+          "speaker": "B",
+          "start": 86.964,
+          "end": 92.514,
+          "id": "seg_30"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " true?",
+          "speaker": "B",
+          "start": 92.664,
+          "end": 92.764,
+          "id": "seg_31"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Definitely.",
+          "speaker": "A",
+          "start": 92.964,
+          "end": 93.714,
+          "id": "seg_32"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Were you surprised when this lawsuit was filed and you started learning about diacetyl that you were never told about it?",
+          "speaker": "B",
+          "start": 96.464,
+          "end": 102.914,
+          "id": "seg_33"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Completely surprised.",
+          "speaker": "A",
+          "start": 102.914,
+          "end": 103.864,
+          "id": "seg_34"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Just as I told your husband,",
+          "speaker": "B",
+          "start": 109.364,
+          "end": 110.51400000000001,
+          "id": "seg_35"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms. Peters,",
+          "speaker": "B",
+          "start": 110.614,
+          "end": 110.964,
+          "id": "seg_36"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " and I want you to understand,",
+          "speaker": "B",
+          "start": 111.114,
+          "end": 112.06400000000001,
+          "id": "seg_37"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " because there was never any warning provided you,",
+          "speaker": "B",
+          "start": 112.214,
+          "end": 114.56400000000001,
+          "id": "seg_38"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Mr.",
+          "speaker": "B",
+          "start": 114.964,
+          "end": 115.364,
+          "id": "seg_39"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Montel does not blame you or Midwest Roasters for his lung disease,",
+          "speaker": "B",
+          "start": 115.51400000000001,
+          "end": 119.01400000000001,
+          "id": "seg_40"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " okay?",
+          "speaker": "B",
+          "start": 119.114,
+          "end": 119.26400000000001,
+          "id": "seg_41"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " He understands that that's not your fault.",
+          "speaker": "B",
+          "start": 119.364,
+          "end": 120.714,
+          "id": "seg_42"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Do you understand that?",
+          "speaker": "B",
+          "start": 120.81400000000001,
+          "end": 121.414,
+          "id": "seg_43"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Objective form and relevance.",
+          "speaker": "C",
+          "start": 121.56400000000001,
+          "end": 122.914,
+          "id": "seg_44"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Ms. Peters,",
+          "speaker": "B",
+          "start": 124.31400000000001,
+          "end": 125.114,
+          "id": "seg_45"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " had Flavor Development Corporation provided any warning or information to you from 2008 until 2012 regarding diacetyl in any amount?",
+          "speaker": "B",
+          "start": 125.26400000000001,
+          "end": 137.814,
+          "id": "seg_46"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " That's something that you would have wanted to know, true?",
+          "speaker": "B",
+          "start": 138.324,
+          "end": 140.074,
+          "id": "seg_47"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "C",
+          "start": 140.274,
+          "end": 140.774,
+          "id": "seg_48"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I don't have any further questions. Thank you, ma'am.",
+          "speaker": "B",
+          "start": 140.97400000000002,
+          "end": 142.824,
+          "id": "seg_49"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " We just take a five minute break.",
+          "speaker": "C",
+          "start": 146.924,
+          "end": 148.174,
+          "id": "seg_50"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Sure.",
+          "speaker": "B",
+          "start": 148.37400000000002,
+          "end": 148.72400000000002,
+          "id": "seg_51"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Thanks.",
+          "speaker": "C",
+          "start": 149.024,
+          "end": 149.22400000000002,
+          "id": "seg_52"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Off the record.",
+          "speaker": "C",
+          "start": 149.424,
+          "end": 149.97400000000002,
+          "id": "seg_53"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " We're going off the record at 9:33 a.m.",
+          "speaker": "B",
+          "start": 150.174,
+          "end": 152.574,
+          "id": "seg_54"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Hello, Ms. Peters. My",
+          "speaker": "C",
+          "start": 162.9,
+          "end": 163.9,
+          "id": "seg_55"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Hello.",
+          "speaker": "A",
+          "start": 163.9,
+          "end": 164.0,
+          "id": "seg_56"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " name is Brian Steffes. We've met before, haven't we?",
+          "speaker": "C",
+          "start": 164.0,
+          "end": 166.35,
+          "id": "seg_57"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " We have.",
+          "speaker": "A",
+          "start": 166.35,
+          "end": 166.8,
+          "id": "seg_58"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And we met when we did that walk-through a couple years ago at Midwest Roasters.",
+          "speaker": "C",
+          "start": 166.8,
+          "end": 171.25,
+          "id": "seg_59"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "A",
+          "start": 171.25,
+          "end": 171.65,
+          "id": "seg_60"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And since you took your deposition last year, you and I haven't spoke.",
+          "speaker": "C",
+          "start": 173.20000000000002,
+          "end": 178.0,
+          "id": "seg_61"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Is that true?",
+          "speaker": "C",
+          "start": 178.10000000000002,
+          "end": 178.5,
+          "id": "seg_62"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "A",
+          "start": 178.70000000000002,
+          "end": 179.1,
+          "id": "seg_63"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay. Did you also meet with Mr.",
+          "speaker": "C",
+          "start": 179.45000000000002,
+          "end": 182.15,
+          "id": "seg_64"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Monsal's new attorney,",
+          "speaker": "C",
+          "start": 182.25,
+          "end": 182.95000000000002,
+          "id": "seg_65"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Mr.",
+          "speaker": "C",
+          "start": 183.0,
+          "end": 183.20000000000002,
+          "id": "seg_66"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Fadler,",
+          "speaker": "C",
+          "start": 183.25,
+          "end": 183.65,
+          "id": "seg_67"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " about a month ago?",
+          "speaker": "C",
+          "start": 183.70000000000002,
+          "end": 184.3,
+          "id": "seg_68"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Object to the form of the question.",
+          "speaker": "B",
+          "start": 184.65,
+          "end": 185.95000000000002,
+          "id": "seg_69"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Go ahead and answer.",
+          "speaker": "B",
+          "start": 186.75,
+          "end": 187.5,
+          "id": "seg_70"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I can rephrase the question.",
+          "speaker": "C",
+          "start": 188.692,
+          "end": 189.892,
+          "id": "seg_71"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Did you meet with Mr. Fadler uh about a month ago?",
+          "speaker": "C",
+          "start": 190.442,
+          "end": 193.542,
+          "id": "seg_72"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "A",
+          "start": 194.192,
+          "end": 194.442,
+          "id": "seg_73"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay, and you understood Mr. Fadler to be Mr. Monticello's attorney?",
+          "speaker": "C",
+          "start": 194.74200000000002,
+          "end": 197.192,
+          "id": "seg_74"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "A",
+          "start": 197.592,
+          "end": 197.942,
+          "id": "seg_75"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay, and how long was that meeting?",
+          "speaker": "C",
+          "start": 198.092,
+          "end": 199.392,
+          "id": "seg_76"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I don't know. Minutes? Uh fifteen minutes?",
+          "speaker": "A",
+          "start": 201.192,
+          "end": 204.942,
+          "id": "seg_77"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay.",
+          "speaker": "C",
+          "start": 205.342,
+          "end": 205.442,
+          "id": "seg_78"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Twenty minutes?",
+          "speaker": "A",
+          "start": 205.442,
+          "end": 205.74200000000002,
+          "id": "seg_79"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Were you with Mr. Peters when you met with him?",
+          "speaker": "C",
+          "start": 205.74200000000002,
+          "end": 208.142,
+          "id": "seg_80"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "A",
+          "start": 208.592,
+          "end": 208.942,
+          "id": "seg_81"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay, he thought it was closer to an hour.",
+          "speaker": "C",
+          "start": 209.192,
+          "end": 210.99200000000002,
+          "id": "seg_82"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Oh, maybe it was. It it all seemed like it went pretty quick.",
+          "speaker": "A",
+          "start": 211.442,
+          "end": 214.442,
+          "id": "seg_83"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay, thanks.",
+          "speaker": "C",
+          "start": 214.792,
+          "end": 215.442,
+          "id": "seg_84"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Did Mr.",
+          "speaker": "C",
+          "start": 215.604,
+          "end": 216.75400000000002,
+          "id": "seg_85"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Fadler show you any documents at that time?",
+          "speaker": "C",
+          "start": 216.90400000000002,
+          "end": 218.50400000000002,
+          "id": "seg_86"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I don't recall any documents.",
+          "speaker": "A",
+          "start": 218.954,
+          "end": 220.304,
+          "id": "seg_87"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay. What did you basically discuss?",
+          "speaker": "C",
+          "start": 220.604,
+          "end": 222.304,
+          "id": "seg_88"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Oh, discuss if we,",
+          "speaker": "A",
+          "start": 225.454,
+          "end": 228.90400000000002,
+          "id": "seg_89"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " pretty much the same questions he just.",
+          "speaker": "A",
+          "start": 228.954,
+          "end": 231.40400000000002,
+          "id": "seg_90"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " They asked me about the chemical and if we knew anything about it prior.",
+          "speaker": "A",
+          "start": 232.308,
+          "end": 236.208,
+          "id": "seg_91"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Okay. And you remember when we took your deposition about a year ago,",
+          "speaker": "C",
+          "start": 236.608,
+          "end": 239.50799999999998,
+          "id": "seg_92"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Mm-hmm.",
+          "speaker": "A",
+          "start": 239.50799999999998,
+          "end": 239.658,
+          "id": "seg_93"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " we asked you a lot of questions about what was contained in the MSDS from Flavor Development.",
+          "speaker": "C",
+          "start": 239.658,
+          "end": 243.708,
+          "id": "seg_94"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Mm",
+          "speaker": "A",
+          "start": 243.708,
+          "end": 243.808,
+          "id": "seg_95"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Do you recall",
+          "speaker": "C",
+          "start": 243.808,
+          "end": 244.00799999999998,
+          "id": "seg_96"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": "-hmm.",
+          "speaker": "A",
+          "start": 244.00799999999998,
+          "end": 244.108,
+          "id": "seg_97"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " that?",
+          "speaker": "C",
+          "start": 244.108,
+          "end": 244.308,
+          "id": "seg_98"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "A",
+          "start": 244.308,
+          "end": 244.708,
+          "id": "seg_99"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " You recall those questions,",
+          "speaker": "C",
+          "start": 244.808,
+          "end": 246.108,
+          "id": "seg_100"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " yes?",
+          "speaker": "C",
+          "start": 246.208,
+          "end": 246.408,
+          "id": "seg_101"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Yes.",
+          "speaker": "A",
+          "start": 246.458,
+          "end": 246.908,
+          "id": "seg_102"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Some of them.",
+          "speaker": "A",
+          "start": 247.00799999999998,
+          "end": 247.708,
+          "id": "seg_103"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " All right. And you would often open boxes from Flavor Development with the flavors,",
+          "speaker": "C",
+          "start": 247.708,
+          "end": 254.208,
+          "id": "seg_104"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " true?",
+          "speaker": "C",
+          "start": 254.308,
+          "end": 254.458,
+          "id": "seg_105"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " From time to time.",
+          "speaker": "A",
+          "start": 254.658,
+          "end": 255.608,
+          "id": "seg_106"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And you would take the MSDSs that were in the boxes and you'd put them in a binder,",
+          "speaker": "C",
+          "start": 255.75799999999998,
+          "end": 260.158,
+          "id": "seg_107"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " is that true?",
+          "speaker": "C",
+          "start": 260.20799999999997,
+          "end": 260.658,
+          "id": "seg_108"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Correct.",
+          "speaker": "A",
+          "start": 260.658,
+          "end": 260.908,
+          "id": "seg_109"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " But you didn't have any specific recollection as to what was in those safety data sheets from 2008 to 2012,",
+          "speaker": "C",
+          "start": 261.524,
+          "end": 267.624,
+          "id": "seg_110"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " is that true?",
+          "speaker": "C",
+          "start": 267.824,
+          "end": 268.374,
+          "id": "seg_111"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " As far as I",
+          "speaker": "A",
+          "start": 269.474,
+          "end": 270.924,
+          "id": "seg_112"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " As what was contained in them, as far as warnings.",
+          "speaker": "C",
+          "start": 270.924,
+          "end": 273.524,
+          "id": "seg_113"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " You didn't have a specific recollection as to what was in those safety data sheets from 2008.",
+          "speaker": "C",
+          "start": 273.774,
+          "end": 278.574,
+          "id": "seg_114"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " don't recall right now.",
+          "speaker": "A",
+          "start": 278.574,
+          "end": 279.574,
+          "id": "seg_115"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " No.",
+          "speaker": "A",
+          "start": 279.624,
+          "end": 279.824,
+          "id": "seg_116"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Right.",
+          "speaker": "C",
+          "start": 279.824,
+          "end": 280.324,
+          "id": "seg_117"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " And last year when you testified,",
+          "speaker": "C",
+          "start": 280.424,
+          "end": 281.924,
+          "id": "seg_118"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " you didn't have any specific recollection as to what was in Flavor Development safety data sheets from 2008 to 2012,",
+          "speaker": "C",
+          "start": 282.024,
+          "end": 288.224,
+          "id": "seg_119"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " correct?",
+          "speaker": "C",
+          "start": 288.474,
+          "end": 288.774,
+          "id": "seg_120"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " I don't recall.",
+          "speaker": "A",
+          "start": 289.024,
+          "end": 289.974,
+          "id": "seg_121"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " Right.",
+          "speaker": "C",
+          "start": 290.174,
+          "end": 290.624,
+          "id": "seg_122"
+        },
+        {
+          "type": "transcript.text.segment",
+          "text": " So like you want to recall what may have been in a safety data sheet for a chocolate flavor versus what may have been in a safety data sheet.",
+          "speaker": "C",
+          "start": 291.7,
+          "end": 299.75,
+          "id": "seg_123"
+        }
+      ],
+      "usage": {
+        "type": "tokens",
+        "total_tokens": 14532,
+        "input_tokens": 4970,
+        "input_token_details": {
+          "text_tokens": 403,
+          "audio_tokens": 4567
+        },
+        "output_tokens": 9562
+      }
+    }
+  ]
+}
