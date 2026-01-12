@@ -10,13 +10,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 import requests
 
-# Load East US 2 credentials
-load_dotenv('.env.eastus2')
+# Load Sweden Central credentials
+load_dotenv('.env')
 
-AZURE_OPENAI_ENDPOINT = os.getenv('AZURE_OPENAI_ENDPOINT_EASTUS2')
-AZURE_OPENAI_API_KEY = os.getenv('AZURE_OPENAI_API_KEY_EASTUS2')
-AZURE_OPENAI_DEPLOYMENT = os.getenv('MODEL_DEPLOYMENT_NAME_EASTUS2')
-AZURE_OPENAI_API_VERSION = os.getenv('AZURE_OPENAI_API_VERSION_EASTUS2')
+AZURE_OPENAI_ENDPOINT = os.getenv('AZURE_OPENAI_ENDPOINT')
+AZURE_OPENAI_API_KEY = os.getenv('AZURE_OPENAI_API_KEY')
+AZURE_OPENAI_DEPLOYMENT = os.getenv('MODEL_DEPLOYMENT_NAME')
+AZURE_OPENAI_API_VERSION = os.getenv('AZURE_OPENAI_API_VERSION')
 
 # Configuration
 MAX_RETRIES = 5  # Increased retries for stubborn chunks
@@ -96,14 +96,34 @@ def main():
     with open(existing_file, 'r') as f:
         existing_data = json.load(f)
     
+    # Check which chunks already exist (filter out None values)
+    existing_chunk_numbers = set(
+        chunk.get("chunk_number") 
+        for chunk in existing_data["chunks"] 
+        if chunk.get("chunk_number") is not None
+    )
+    print(f"\nExisting chunks: {sorted(existing_chunk_numbers)}")
+    
     print("\nRetrying missing chunks for Teresa Peters deposition")
     print("=" * 60)
     
-    # Chunks to retry
-    chunks_to_retry = [
+    # All potential chunks to retry
+    all_chunks_to_check = [
         ("depositions/Peters, Teresa 12132021/chunks_5min_eastus2/Teresa Peters mp3_chunk03.mp3", 3),
         ("depositions/Peters, Teresa 12132021/chunks_5min_eastus2/Teresa Peters mp3_chunk04.mp3", 4)
     ]
+    
+    # Only retry chunks that don't exist yet
+    chunks_to_retry = [
+        (path, num) for path, num in all_chunks_to_check 
+        if num not in existing_chunk_numbers
+    ]
+    
+    if not chunks_to_retry:
+        print("\n  ✓ All chunks already exist! Nothing to retry.")
+        return
+    
+    print(f"  → Will retry chunks: {[num for _, num in chunks_to_retry]}")
     
     new_chunks = []
     

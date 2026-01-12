@@ -72,3 +72,5 @@ Thumbs.db
 .cache/
 
 depositions/
+test_audio/
+output/
